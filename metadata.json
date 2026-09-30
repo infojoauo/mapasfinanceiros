@@ -1,0 +1,6 @@
+{
+  "name": "Finanças para Casais - 50 Mapas Visuais",
+  "description": "50 Mapas Visuais + Plano de Ação Completo para Casais Organizados Financeiramente. Reserva, orçamento e sem briga por dinheiro.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
