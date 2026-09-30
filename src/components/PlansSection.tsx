@@ -52,7 +52,9 @@ export const PlansSection: React.FC<PlansSectionProps> = ({
                   src="https://i.imgur.com/uL8cEEL.png" 
                   alt="Kit Completo Finanças para Casais" 
                   className="w-full max-w-[340px] sm:max-w-[390px] h-auto max-h-[260px] object-contain drop-shadow-xl"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
               </div>
 

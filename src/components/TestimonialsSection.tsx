@@ -118,7 +118,9 @@ export const TestimonialsSection: React.FC = () => {
                   src={item.url}
                   alt={item.alt}
                   className="w-full h-auto object-contain rounded-2xl drop-shadow-md block hover:scale-[1.01] transition-transform duration-200"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
               </div>
             ))}

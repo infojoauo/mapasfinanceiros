@@ -118,7 +118,9 @@ export const BonusesSection: React.FC = () => {
                   src={b.imageUrl}
                   alt={b.title}
                   className="w-full max-w-[440px] max-h-[260px] sm:max-h-[300px] h-auto object-contain drop-shadow-md"
-                  loading="lazy"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                 />
               </div>
 

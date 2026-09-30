@@ -37,7 +37,9 @@ const InfiniteCategoryCarousel: React.FC<{
         src={map.imageUrl}
         alt="Mapa visual financeiro"
         className="w-full h-auto object-contain rounded-2xl drop-shadow-md block pointer-events-none"
-        loading="lazy"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
     </div>
   );
