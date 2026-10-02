@@ -19,20 +19,10 @@ import { GuaranteeSection } from './components/GuaranteeSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
-import { CheckoutModal } from './components/CheckoutModal';
 import { MessageCircle } from 'lucide-react';
 
 export default function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [checkoutData, setCheckoutData] = useState<{
-    isOpen: boolean;
-    planName: string;
-    price: string;
-  }>({
-    isOpen: false,
-    planName: '',
-    price: '',
-  });
 
   const scrollToPlans = () => {
     const plansElem = document.getElementById('planos');
@@ -41,38 +31,26 @@ export default function App() {
     }
   };
 
-  // Triggered when user clicks "Quero o Plano Básico por R$10,00"
+  // Triggered when user clicks "Quero o Plano Básico por R$10,00" -> Opens popup offer
   const handleSelectBasicPlan = () => {
     setIsPopupOpen(true);
   };
 
   // Triggered when user clicks "Quero o Plano Completo por R$29,90"
-  const handleSelectCompletePlan = (customPrice?: string) => {
-    setCheckoutData({
-      isOpen: true,
-      planName: 'Plano Completo',
-      price: customPrice || '29,90',
-    });
+  const handleSelectCompletePlan = () => {
+    window.location.href = 'https://app.zuptos.com.br/checkout/10cbb509bde9bf13';
   };
 
   // From popup: user accepts upgrade offer at R$ 19,90
   const handleAcceptUpgrade = () => {
     setIsPopupOpen(false);
-    setCheckoutData({
-      isOpen: true,
-      planName: 'Plano Completo (Oferta Especial R$ 19,90)',
-      price: '19,90',
-    });
+    window.location.href = 'https://app.zuptos.com.br/checkout/f1b3420a1d383e74';
   };
 
   // From popup: user declines and continues with basic at R$ 10,00
   const handleContinueBasic = () => {
     setIsPopupOpen(false);
-    setCheckoutData({
-      isOpen: true,
-      planName: 'Plano Básico',
-      price: '10,00',
-    });
+    window.location.href = 'https://app.zuptos.com.br/checkout/a1a5a3427164bc4c';
   };
 
   return (
@@ -130,16 +108,6 @@ export default function App() {
         onClose={() => setIsPopupOpen(false)}
         onAcceptUpgrade={handleAcceptUpgrade}
         onContinueBasic={handleContinueBasic}
-      />
-
-      {/* Interactive Checkout Modal (PIX / Cartão com liberação na hora) */}
-      <CheckoutModal
-        isOpen={checkoutData.isOpen}
-        planName={checkoutData.planName}
-        price={checkoutData.price}
-        onClose={() =>
-          setCheckoutData({ isOpen: false, planName: '', price: '' })
-        }
       />
 
       {/* Floating Action Button */}

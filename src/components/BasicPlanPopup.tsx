@@ -62,21 +62,27 @@ export const BasicPlanPopup: React.FC<BasicPlanPopupProps> = ({
           </div>
         </div>
 
-        {/* Big Required Button */}
-        <button
-          onClick={onAcceptUpgrade}
-          className="w-full bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#132219] font-extrabold text-xs sm:text-sm uppercase tracking-wide py-3 px-4 rounded-lg sm:rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer border-t border-[#FFF2CC] mb-2 flex items-center justify-center gap-1.5"
+        {/* Big Required Button - R$19,90 Zuptos Checkout */}
+        <a
+          href="https://app.zuptos.com.br/checkout/f1b3420a1d383e74"
+          onClick={(e) => {
+            if (onAcceptUpgrade) onAcceptUpgrade();
+          }}
+          className="w-full bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#132219] font-extrabold text-xs sm:text-sm uppercase tracking-wide py-3 px-4 rounded-lg sm:rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer border-t border-[#FFF2CC] mb-2 flex items-center justify-center gap-1.5 text-center"
         >
           <span>PEGAR PLANO COMPLETO POR APENAS R$19,90 →</span>
-        </button>
+        </a>
 
-        {/* Secondary link to continue with basic */}
-        <button
-          onClick={onContinueBasic}
-          className="text-[11px] text-[#6F867B] hover:text-[#28493A] underline decoration-[#6F867B]/40 hover:decoration-[#28493A] py-0.5 cursor-pointer transition-colors block mx-auto"
+        {/* Secondary link to continue with basic - R$10,00 Zuptos Checkout */}
+        <a
+          href="https://app.zuptos.com.br/checkout/a1a5a3427164bc4c"
+          onClick={(e) => {
+            if (onContinueBasic) onContinueBasic();
+          }}
+          className="text-[11px] text-[#6F867B] hover:text-[#28493A] underline decoration-[#6F867B]/40 hover:decoration-[#28493A] py-1 cursor-pointer transition-colors block mx-auto text-center font-medium"
         >
-          Não quero mais o Plano Básico por R$10,00 (sem bônus)
-        </button>
+          Continuar com o Plano Básico por R$10,00 (sem bônus)
+        </a>
       </div>
     </div>
   );

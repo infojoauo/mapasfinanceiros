@@ -112,12 +112,15 @@ export const PlansSection: React.FC<PlansSectionProps> = ({
                 Você economiza R$ 148 em bônus, grátis
               </div>
 
-              <button
-                onClick={() => onSelectCompletePlan('29,90')}
-                className="w-full bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#14231B] font-bold text-sm sm:text-base uppercase tracking-wide py-3.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center cursor-pointer border-t border-[#FEE199]"
+              <a
+                href="https://app.zuptos.com.br/checkout/10cbb509bde9bf13"
+                onClick={(e) => {
+                  if (onSelectCompletePlan) onSelectCompletePlan('29,90');
+                }}
+                className="w-full bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#14231B] font-bold text-sm sm:text-base uppercase tracking-wide py-3.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center cursor-pointer border-t border-[#FEE199] text-center"
               >
                 <span>Quero o Plano Completo por R$29,90</span>
-              </button>
+              </a>
               <p className="text-[11px] text-[#698275] text-center mt-2">
                 Acesso imediato por WhatsApp e e-mail
               </p>
