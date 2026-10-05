@@ -1,23 +1,23 @@
 import React from 'react';
-import { Lock, ShieldCheck } from 'lucide-react';
+import { Sparkles, ShieldCheck, Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="py-10 px-4 sm:px-6 bg-[#0E1F18] text-[#8EA69A] text-center border-t border-[#1B362A] text-xs">
+    <footer className="py-12 px-4 sm:px-6 bg-[#1F1015] text-[#A68892] text-center border-t border-[#361E26] text-xs">
       <div className="max-w-4xl mx-auto space-y-4">
         <div className="flex items-center justify-center gap-2 text-white font-bold text-sm font-serif">
-          <span>Finanças para Casais</span>
-          <span className="text-[#E5A83B]">•</span>
-          <span className="font-sans text-xs font-normal text-[#A3BFB0]">
-            50 Mapas Visuais + Plano de Ação
+          <span>Protocolo Pele Jovem</span>
+          <span className="text-[#C44369]">•</span>
+          <span className="font-sans text-xs font-normal text-[#D4AEB9]">
+            Jornada Prática de 21 Dias de Autocuidado
           </span>
         </div>
 
-        <p className="max-w-xl mx-auto text-[#799486] leading-relaxed text-[11px]">
-          Este produto tem finalidade exclusivamente educacional e prática de organização pessoal e familiar. Não constitui consultoria financeira individual, promessa de rentabilidade ou recomendação de compra e venda de ativos regulados pela CVM.
+        <p className="max-w-xl mx-auto text-[#8F707A] leading-relaxed text-[11px]">
+          Este produto tem finalidade exclusivamente educacional, de organização de rotina diária e autocuidado pessoal. Não substitui consulta, diagnóstico ou acompanhamento dermatológico ou médico profissional. Não promete cura ou eliminação de condições físicas.
         </p>
 
-        <div className="flex items-center justify-center gap-4 text-xs text-[#9BB5A7] flex-wrap pt-2 border-t border-[#183125]">
+        <div className="flex items-center justify-center gap-4 text-xs text-[#BA9DA6] flex-wrap pt-2 border-t border-[#311A22]">
           <a href="#termos" onClick={(e) => { e.preventDefault(); }} className="hover:text-white transition-colors">
             Termos de Uso
           </a>
@@ -31,8 +31,8 @@ export const Footer: React.FC = () => {
           </a>
         </div>
 
-        <p className="text-[11px] text-[#5D7769]">
-          © {new Date().getFullYear()} Finanças para Casais — Todos os direitos reservados.
+        <p className="text-[11px] text-[#7A5B65]">
+          © {new Date().getFullYear()} Protocolo Pele Jovem — Todos os direitos reservados.
         </p>
       </div>
     </footer>

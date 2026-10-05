@@ -1,5 +1,6 @@
 import React from 'react';
-import { Check, Play, Video } from 'lucide-react';
+import { Check, Sparkles, ShieldCheck, HeartHandshake, ArrowDown } from 'lucide-react';
+import { ImagePlaceholder } from './ImagePlaceholder';
 
 interface HeroSectionProps {
   onScrollToPlans: () => void;
@@ -7,83 +8,90 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onScrollToPlans }) => {
   return (
-    <section className="pt-8 pb-14 px-4 sm:px-6 bg-[#F8F6F0] relative overflow-hidden">
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Category tag */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#E5EEE8] border border-[#C6DDD0] text-[#16422C] text-xs font-bold tracking-wider uppercase mb-5 shadow-xs">
-          <span>FINANÇAS PARA CASAIS</span>
+    <section className="pt-8 sm:pt-12 pb-14 sm:pb-20 px-4 sm:px-6 bg-gradient-to-b from-[#FAF5F5] via-[#FFFDFD] to-[#FAF5F6] relative overflow-hidden">
+      {/* Decorative ambient background glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-[#FCE7ED]/60 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        {/* Top Category Badge */}
+        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#FCE8ED] border border-[#F5C7D3] text-[#A63152] text-xs font-bold tracking-wider uppercase mb-5 shadow-xs">
+          <Sparkles className="w-3.5 h-3.5 text-[#C44369]" />
+          <span>JORNADA PRÁTICA DE 21 DIAS • AUTOCUIDADO & ROTINA</span>
         </div>
 
-        {/* Headline */}
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-[#15271F] font-serif leading-[1.25] tracking-tight max-w-3xl mx-auto mb-6">
-          Finanças para Casais 40+ – Plano Completo com 50 Mapas Visuais
+        {/* Main Headline */}
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-[#2A171E] font-serif leading-[1.25] tracking-tight max-w-3xl mx-auto mb-5">
+          Uma rotina de 21 dias para cuidar da aparência da sua pele e voltar a se sentir bem quando olhar no espelho.
         </h1>
 
-        {/* Video Area (Espaço em branco grande e limpo para colar o vídeo de 30 segundos) */}
-        <div className="max-w-2xl mx-auto mb-8">
-          <div className="relative aspect-video w-full rounded-2xl bg-white border-2 border-dashed border-[#CFD8D3] shadow-md flex flex-col items-center justify-center p-6 text-center group hover:border-[#1E4D38] transition-all overflow-hidden">
-            {/* Clean empty placeholder as explicitly required */}
-            <div className="w-16 h-16 rounded-full bg-[#F3F6F4] flex items-center justify-center text-[#2D5A45] mb-3 shadow-inner group-hover:scale-105 transition-transform">
-              <Play className="w-7 h-7 ml-1 fill-[#2D5A45]" />
-            </div>
-            <p className="text-sm sm:text-base font-semibold text-[#1F3A2E] mb-1">
-              [ Espaço Limpo Reservado para o Vídeo de 30 Segundos ]
-            </p>
-            <p className="text-xs text-[#526E60] max-w-md">
-              Área em branco pronta para você colar o embed ou link do seu vídeo de apresentação de alta conversão.
-            </p>
-            <div className="mt-3 inline-flex items-center gap-1 text-[11px] text-[#1E4D38] bg-[#E8F1EC] px-2.5 py-1 rounded-md font-medium">
-              <Video className="w-3.5 h-3.5" /> Vídeo 16:9 • Limpo e Otimizado
-            </div>
-          </div>
-        </div>
-
-        {/* Subhead text */}
-        <p className="text-base sm:text-lg text-[#32453C] max-w-2xl mx-auto leading-relaxed mb-8 font-normal">
-          Da organização do dinheiro a dois ao planejamento do futuro em família: entenda de forma simples e visual como sair das dívidas juntos, montar a reserva dos filhos, dividir as contas sem atrito e construir um futuro financeiro mais seguro — <strong className="font-semibold text-[#12281E]">mesmo que vocês não entendam nada de finanças.</strong>
+        {/* Subheadline */}
+        <p className="text-base sm:text-lg text-[#553C45] max-w-2xl mx-auto leading-relaxed mb-8 font-normal">
+          O <strong>Protocolo Pele Jovem</strong> organiza os seus cuidados diários em uma jornada simples e prática — para você finalmente saber o que usar de manhã e à noite, criar consistência e conquistar a sensação de uma pele bem cuidada, hidratada e com viço renovado.
         </p>
 
-        {/* 3 Green Checkmark Benefits */}
-        <div className="max-w-xl mx-auto bg-white/90 backdrop-blur-xs rounded-xl p-4 sm:p-5 shadow-xs border border-[#E3ECE6] mb-8 text-left space-y-2.5">
+        {/* Hero Visual Area: [IMAGEM HERO / MOCKUP DO PRODUTO] */}
+        <div className="max-w-2xl mx-auto mb-10">
+          <ImagePlaceholder
+            label="[IMAGEM HERO / MOCKUP DO PRODUTO]"
+            subtext="Mockup visual 3D do Protocolo Pele Jovem com celular, tablet e guias digitais de autocuidado"
+            aspect="aspect-[16/10]"
+            badge="MOCKUP PRINCIPAL"
+          />
+        </div>
+
+        {/* 3 Key Benefits Box */}
+        <div className="max-w-xl mx-auto bg-white/95 backdrop-blur-xs rounded-2xl p-5 sm:p-6 shadow-sm border border-[#EED7DE] mb-9 text-left space-y-3.5">
           <div className="flex items-start gap-3">
-            <div className="w-5 h-5 rounded-sm bg-[#227B4E] text-white flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-5 h-5 rounded-full bg-[#4E7D65] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
               <Check className="w-3.5 h-3.5 stroke-[3]" />
             </div>
-            <p className="text-sm sm:text-[15px] text-[#1D3328] font-medium leading-snug">
-              <strong>Vocês olham, entendem e já organizam</strong> — sem aula longa
+            <p className="text-sm sm:text-[15px] text-[#2F1B22] font-medium leading-snug">
+              <strong>Passos rápidos e descomplicados</strong> — rotinas de menos de 5 minutos fáceis de aplicar no seu dia a dia.
             </p>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-5 h-5 rounded-sm bg-[#227B4E] text-white flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-5 h-5 rounded-full bg-[#4E7D65] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
               <Check className="w-3.5 h-3.5 stroke-[3]" />
             </div>
-            <p className="text-sm sm:text-[15px] text-[#1D3328] font-medium leading-snug">
-              <strong>Funciona no celular e no computador</strong>
+            <p className="text-sm sm:text-[15px] text-[#2F1B22] font-medium leading-snug">
+              <strong>Use o que você já tem em casa</strong> — sem necessidade de comprar cosméticos caros ou dezenas de produtos.
             </p>
           </div>
 
           <div className="flex items-start gap-3">
-            <div className="w-5 h-5 rounded-sm bg-[#227B4E] text-white flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-5 h-5 rounded-full bg-[#4E7D65] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
               <Check className="w-3.5 h-3.5 stroke-[3]" />
             </div>
-            <p className="text-sm sm:text-[15px] text-[#1D3328] font-medium leading-snug">
-              <strong>Use quando quiser</strong>, como um manual de consulta do casal
+            <p className="text-sm sm:text-[15px] text-[#2F1B22] font-medium leading-snug">
+              <strong>Área de membros completa no seu ritmo</strong> — comece pelo Dia 1 e acesse tudo pelo celular ou computador.
             </p>
           </div>
         </div>
 
-        {/* Main Golden CTA Button */}
+        {/* Main CTA Button */}
         <div className="max-w-md mx-auto">
           <button
             onClick={onScrollToPlans}
-            className="w-full bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#15231B] font-bold text-base sm:text-lg uppercase tracking-wide py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center cursor-pointer border-t border-[#FEE199] group"
+            className="w-full bg-gradient-to-r from-[#C24168] via-[#D64E76] to-[#C24168] hover:from-[#B1355A] hover:to-[#B1355A] active:scale-[0.99] text-white font-extrabold text-base sm:text-lg uppercase tracking-wide py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all flex flex-col items-center justify-center cursor-pointer border-t border-white/30 group"
           >
-            <span>QUERO ORGANIZAR MINHA VIDA FINANCEIRA</span>
+            <span className="flex items-center gap-2">
+              QUERO COMEÇAR MEU PROTOCOLO
+              <ArrowDown className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
+            </span>
           </button>
-          <p className="text-xs text-[#556D60] mt-2.5 text-center font-medium leading-relaxed max-w-sm mx-auto">
-            <span>🛡️ Acesso imediato por e-mail e WhatsApp após a confirmação da compra</span>
-          </p>
+          
+          <div className="flex items-center justify-center gap-4 text-xs text-[#6B505A] mt-3 font-medium">
+            <span className="inline-flex items-center gap-1">
+              <ShieldCheck className="w-4 h-4 text-[#4E7D65]" />
+              Garantia de 7 dias
+            </span>
+            <span className="text-[#D6B5BF]">•</span>
+            <span className="inline-flex items-center gap-1">
+              <Sparkles className="w-4 h-4 text-[#D64E76]" />
+              Acesso digital imediato
+            </span>
+          </div>
         </div>
       </div>
     </section>

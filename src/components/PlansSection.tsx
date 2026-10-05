@@ -1,5 +1,6 @@
 import React from 'react';
-import { Check, X, Sparkles, ShieldCheck, Gift } from 'lucide-react';
+import { Check, X, Sparkles, ShieldCheck, HeartHandshake, ArrowRight } from 'lucide-react';
+import { ImagePlaceholder } from './ImagePlaceholder';
 
 interface PlansSectionProps {
   onSelectBasicPlan: () => void;
@@ -11,196 +12,190 @@ export const PlansSection: React.FC<PlansSectionProps> = ({
   onSelectCompletePlan,
 }) => {
   return (
-    <section id="planos" className="py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF9F5] border-t border-[#E5E0D5]">
+    <section id="ofertas" className="py-14 sm:py-24 px-4 sm:px-6 bg-white border-t border-[#F2E5E8] relative">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold tracking-widest text-[#21573D] uppercase block mb-2">
-            ESCOLHA SUA OPÇÃO
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="inline-block px-3 py-1 rounded-full bg-[#FAF0F3] border border-[#F5D8E0] text-[#9E3352] text-xs font-bold uppercase tracking-wider mb-3">
+            ESCOLHA SEU PLANO
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#14261E] font-serif">
-            Escolha seu plano
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A161E] font-serif tracking-tight mb-3">
+            Comece hoje sua jornada de 21 dias
           </h2>
-          <p className="text-xs sm:text-sm text-[#526D60] mt-1.5">
-            Acesso vitalício, pagamento único e sem nenhuma mensalidade.
+          <p className="text-xs sm:text-sm text-[#61454F] leading-relaxed">
+            Selecione a opção ideal para você. Todos os planos contam com acesso imediato e 7 dias de garantia incondicional.
           </p>
         </div>
 
-        {/* Two Offer Boxes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        {/* 2 Plans Grid: Complete Plan First on Mobile / Desktop Highlighting */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch max-w-3xl mx-auto">
           
-          {/* PLANO COMPLETO (Highlighted as MAIS VENDIDO) */}
-          <div className="bg-white rounded-2xl border-2 border-[#E5A83B] p-6 sm:p-7 shadow-lg relative flex flex-col justify-between order-1 md:order-2">
-            {/* Top Badge */}
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#E5A83B] text-[#132219] font-bold text-[11px] sm:text-xs uppercase tracking-wider px-4 py-1 rounded-full shadow-sm flex items-center justify-center gap-1.5 whitespace-nowrap text-center">
-              <Sparkles className="w-3.5 h-3.5 shrink-0" />
-              <span>MAIS VENDIDO • RECOMENDADO</span>
+          {/* PLANO COMPLETO (Mais Escolhido / Maior Percepção de Valor) */}
+          <div className="bg-gradient-to-b from-[#FFFDFE] to-[#FFF7F9] rounded-3xl border-2 border-[#D45B7A] p-6 sm:p-8 shadow-xl relative flex flex-col justify-between order-1 md:order-2 transform md:-translate-y-2">
+            {/* Best Value Badge */}
+            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#C24168] via-[#D64E76] to-[#C24168] text-white px-4 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1.5 whitespace-nowrap">
+              <Sparkles className="w-3.5 h-3.5 text-amber-200" />
+              <span>MAIS ESCOLHIDO • MELHOR CUSTO-BENEFÍCIO</span>
             </div>
 
             <div>
               <div className="text-center mt-2 mb-4">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#152B20] font-serif">
-                  Plano Completo
+                <h3 className="text-xl sm:text-2xl font-bold text-[#2D161F] font-serif">
+                  Protocolo Pele Jovem + Kit Completo
                 </h3>
-                <p className="text-xs text-[#5D7668]">
-                  O kit definitivo para o casal organizar tudo e nunca mais brigar por dinheiro
+                <p className="text-xs text-[#8C3A52] font-medium mt-0.5">
+                  A experiência completa com todos os 6 bônus exclusivos
                 </p>
               </div>
 
-              {/* Kit Completo Mockup Image (sem box por trás, imagem maior) */}
-              <div className="w-full flex items-center justify-center my-3 sm:my-4">
-                <img 
-                  src="https://i.imgur.com/uL8cEEL.png" 
-                  alt="Kit Completo Finanças para Casais" 
-                  className="w-full max-w-[340px] sm:max-w-[390px] h-auto max-h-[260px] object-contain drop-shadow-xl"
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
+              {/* Product Mockup Space */}
+              <div className="w-full mb-4">
+                <ImagePlaceholder
+                  label="[MOCKUP PROTOCOLO + 6 BÔNUS]"
+                  subtext="Mockup visual com o Protocolo e todos os 6 bônus"
+                  aspect="aspect-[16/10]"
+                  badge="KIT COMPLETO"
                 />
               </div>
 
-              {/* Price */}
-              <div className="text-center mb-6 bg-[#FCFBF7] py-3.5 px-4 rounded-xl border border-[#ECE6D8]">
-                <p className="text-xs text-[#7A8E83] line-through">
-                  de R$ 77,90
-                </p>
-                <div className="flex items-baseline justify-center gap-1.5 mt-0.5">
-                  <span className="text-sm font-semibold text-[#152B20]">por</span>
-                  <span className="text-3xl sm:text-4xl font-extrabold text-[#152B20] tracking-tight">
+              {/* Price Box */}
+              <div className="text-center mb-6 bg-white/90 py-3.5 px-4 rounded-2xl border border-[#F2D6DF] shadow-xs">
+                <div className="flex items-baseline justify-center gap-1.5">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-[#2A161E] tracking-tight">
                     R$ 29,90
                   </span>
-                  <span className="text-xs font-semibold text-[#152B20]">à vista</span>
+                  <span className="text-xs font-semibold text-[#664953]">à vista</span>
                 </div>
-                <p className="text-[11px] text-[#246B45] font-semibold mt-1">
-                  Apenas hoje • Sem mensalidade
+                <p className="text-[11px] text-[#4E7D65] font-semibold mt-1">
+                  Pagamento único • Sem mensalidade • Acesso vitalício
                 </p>
               </div>
 
               {/* Features List */}
-              <div className="space-y-2.5 text-xs sm:text-sm text-[#1F362A] mb-6">
+              <div className="space-y-2.5 text-xs sm:text-sm text-[#2F1A23] mb-6">
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>50 Mapas Visuais</strong> de finanças completos</span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Área de membros completa</strong> com os 21 dias</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Plano de Ação Completo</strong> passo a passo</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-[#FFF9ED] p-2 rounded-lg border border-[#F3DFB0]">
-                  <span className="text-base shrink-0">🎁</span>
-                  <span>
-                    <strong>+ 5 Bônus Extras</strong> (Raio-X, Organizador, Bússola, Calculadora do Futuro e Checklist Anti-Briga)
-                  </span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Aulas e orientações em vídeo</strong> curtas e diretas</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Acesso vitalício</strong> — consulte quando quiser</span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Manuais e roteiros em PDF</strong> (Manhã e Noite)</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Acesso imediato</strong> no e-mail e WhatsApp</span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Caderno de Checklists diários</strong> de autocuidado</span>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Suporte prioritário</strong> por WhatsApp</span>
+                
+                {/* 6 Bonuses Highlighted */}
+                <div className="p-3 bg-[#FAF0F3] rounded-xl border border-[#F5D8E0] space-y-1.5 mt-2">
+                  <p className="text-[11px] font-bold text-[#A63152] uppercase tracking-wider">
+                    + TODOS OS 6 BÔNUS EXCLUSIVOS:
+                  </p>
+                  <p className="text-xs text-[#5E424D]">✓ Bônus 1: Planner de Cuidados com a Pele</p>
+                  <p className="text-xs text-[#5E424D]">✓ Bônus 2: Checklist da Rotina de Pele</p>
+                  <p className="text-xs text-[#5E424D]">✓ Bônus 3: Guia das Áreas Específicas (Olhos/Colo)</p>
+                  <p className="text-xs text-[#5E424D]">✓ Bônus 4: Guia dos Maiores Erros na Rotina</p>
+                  <p className="text-xs text-[#5E424D]">✓ Bônus 5: Calendário de Autocuidado</p>
+                  <p className="text-xs text-[#5E424D]">✓ Bônus 6: Kit de Rotinas Extras (Pré-Make & Spa)</p>
                 </div>
               </div>
             </div>
 
-            {/* Savings Callout & Button */}
+            {/* Savings Callout & Action Button */}
             <div>
-              <div className="text-center text-xs font-bold text-[#8C6010] bg-[#FFF8E8] py-1.5 px-3 rounded-md border border-[#F5DC9C] mb-3">
-                Você economiza R$ 148 em bônus, grátis
+              <div className="text-center text-xs font-bold text-[#8E2848] bg-[#FAF0F3] py-1.5 px-3 rounded-xl border border-[#F5D8E0] mb-3">
+                Economia imediata de mais de R$ 240 em bônus
               </div>
 
               <a
                 href="https://app.zuptos.com.br/checkout/10cbb509bde9bf13"
-                onClick={(e) => {
-                  if (onSelectCompletePlan) onSelectCompletePlan('29,90');
-                }}
-                className="w-full bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#14231B] font-bold text-sm sm:text-base uppercase tracking-wide py-3.5 px-4 rounded-lg shadow-md hover:shadow-lg transition-all flex flex-col items-center justify-center cursor-pointer border-t border-[#FEE199] text-center"
+                onClick={() => onSelectCompletePlan('29,90')}
+                className="w-full bg-gradient-to-r from-[#C24168] via-[#D64E76] to-[#C24168] hover:from-[#B1355A] hover:to-[#B1355A] active:scale-[0.99] text-white font-extrabold text-sm sm:text-base uppercase tracking-wide py-4 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer border-t border-white/30 text-center"
               >
-                <span>Quero o Plano Completo por R$29,90</span>
+                <span>QUERO O PLANO COMPLETO (R$ 29,90)</span>
+                <ArrowRight className="w-4 h-4" />
               </a>
-              <p className="text-[11px] text-[#698275] text-center mt-2">
-                Acesso imediato por WhatsApp e e-mail
+              <p className="text-[11px] text-[#7A5C66] text-center mt-2 font-medium">
+                ✨ Acesso imediato liberado no seu e-mail e WhatsApp
               </p>
             </div>
           </div>
 
           {/* PLANO BÁSICO */}
-          <div className="bg-white rounded-2xl border border-[#DCD6C7] p-6 sm:p-7 shadow-xs relative flex flex-col justify-between order-2 md:order-1">
+          <div className="bg-white rounded-3xl border border-[#E8D4DC] p-6 sm:p-7 shadow-xs relative flex flex-col justify-between order-2 md:order-1">
             <div>
               <div className="text-center mt-2 mb-4">
-                <h3 className="text-xl sm:text-2xl font-bold text-[#152B20] font-serif">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#2D161F] font-serif">
                   Plano Básico
                 </h3>
-                <p className="text-xs text-[#5D7668]">
-                  Ideal para quem quer apenas a versão essencial dos 50 mapas
+                <p className="text-xs text-[#7A5D67]">
+                  Apenas o programa essencial do Protocolo Pele Jovem
                 </p>
               </div>
 
-              {/* Kit Básico Mockup Image */}
-              <div className="w-full flex items-center justify-center my-3 sm:my-4">
-                <img 
-                  src="https://i.imgur.com/iQjAqs0.png" 
-                  alt="Plano Básico - 50 Mapas Visuais" 
-                  className="w-full max-w-[320px] sm:max-w-[360px] h-auto max-h-[260px] object-contain drop-shadow-lg"
-                  loading="lazy"
+              {/* Basic Mockup Space */}
+              <div className="w-full mb-4">
+                <ImagePlaceholder
+                  label="[MOCKUP PLANO BÁSICO]"
+                  subtext="Mockup visual do guia essencial do Protocolo"
+                  aspect="aspect-[16/10]"
+                  badge="PLANO BÁSICO"
                 />
               </div>
 
-              {/* Price */}
-              <div className="text-center mb-6 bg-[#FCFBF7] py-3.5 px-4 rounded-xl border border-[#ECE6D8]">
+              {/* Price Box */}
+              <div className="text-center mb-6 bg-[#FAF6F7] py-3.5 px-4 rounded-2xl border border-[#F0DCE2]">
                 <div className="flex items-baseline justify-center gap-1.5">
-                  <span className="text-3xl sm:text-4xl font-extrabold text-[#152B20] tracking-tight">
+                  <span className="text-3xl sm:text-4xl font-extrabold text-[#2D161F] tracking-tight">
                     R$ 10,00
                   </span>
-                  <span className="text-xs font-semibold text-[#152B20]">à vista</span>
+                  <span className="text-xs font-semibold text-[#664953]">à vista</span>
                 </div>
-                <p className="text-[11px] text-[#556D61] mt-1">
+                <p className="text-[11px] text-[#7A5D67] mt-1">
                   Apenas hoje • Sem mensalidade
                 </p>
               </div>
 
               {/* Features List */}
-              <div className="space-y-2.5 text-xs sm:text-sm text-[#1F362A] mb-6">
+              <div className="space-y-2.5 text-xs sm:text-sm text-[#2F1A23] mb-6">
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>50 Mapas Visuais</strong> de finanças</span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Área de membros</strong> com os 21 dias</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Plano de Ação Completo</strong></span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Vídeos e orientações</strong> da rotina</span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Acesso vitalício</strong></span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Guia do Protocolo em PDF</strong></span>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Acesso imediato</strong></span>
+                  <span className="w-4 h-4 rounded-sm bg-[#4E7D65] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
+                  <span><strong>Checklist essencial</strong> de hábitos</span>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✓</span>
-                  <span><strong>Suporte por WhatsApp</strong></span>
-                </div>
-                <div className="flex items-start gap-2.5 text-[#889B90] opacity-80 pt-1">
-                  <X className="w-4 h-4 text-[#C25858] shrink-0 mt-0.5" />
-                  <span>Sem os 5 bônus extras de casal</span>
+                <div className="flex items-start gap-2.5 text-[#9E828C] opacity-80 pt-2">
+                  <X className="w-4 h-4 text-[#BA365B] shrink-0 mt-0.5" />
+                  <span>Sem os 6 bônus extras de autocuidado</span>
                 </div>
               </div>
             </div>
 
-            {/* Button */}
+            {/* Action Button - Triggers Popup Upgrade */}
             <div>
               <button
+                type="button"
                 onClick={onSelectBasicPlan}
-                className="w-full bg-[#E5DEC9] hover:bg-[#D8D0B8] active:scale-[0.99] text-[#2C2317] font-bold text-sm sm:text-base uppercase tracking-wide py-3.5 px-4 rounded-lg shadow-xs hover:shadow-md transition-all flex flex-col items-center justify-center cursor-pointer border border-[#C5BBA4]"
+                className="w-full bg-[#FAF0F3] hover:bg-[#F5E2E8] active:scale-[0.99] text-[#7A283E] font-bold text-sm sm:text-base uppercase tracking-wide py-3.5 px-4 rounded-xl shadow-xs hover:shadow-sm transition-all flex items-center justify-center cursor-pointer border border-[#E5C2CC] text-center"
               >
-                <span>Quero o Plano Básico por R$10,00</span>
+                <span>Quero o Plano Básico por R$ 10,00</span>
               </button>
-              <p className="text-[11px] text-[#698275] text-center mt-2">
-                Acesso imediato por WhatsApp e e-mail
+              <p className="text-[11px] text-[#7A5C66] text-center mt-2 font-medium">
+                Acesso imediato liberado no seu e-mail e WhatsApp
               </p>
             </div>
           </div>

@@ -1,149 +1,114 @@
 import React from 'react';
-import { Check, Gift, BookOpen, Calculator, Compass, FileCheck } from 'lucide-react';
+import { Gift, Sparkles, Check } from 'lucide-react';
+import { ImagePlaceholder } from './ImagePlaceholder';
 
 export const BonusesSection: React.FC = () => {
   const bonuses = [
     {
-      number: '01',
+      num: '01',
       badge: 'BÔNUS 01',
-      icon: '📊',
-      title: 'Raio-X da Vida Financeira do Casal',
-      originalPrice: 'de R$47 por GRÁTIS',
-      description: 'Diagnóstico preenchível para vocês descobrirem exatamente onde está o dinheiro do casal: organizado, construindo segurança ou pronto para avançar.',
-      highlight: 'Incluso no Plano Completo',
-      imageUrl: 'https://i.imgur.com/Lnv2mUR.png',
+      title: 'Planner de Cuidados com a Pele',
+      value: 'de R$ 47 por GRÁTIS',
+      desc: 'Um organizador visual para você planejar seus momentos de autocuidado da semana, acompanhar o uso de produtos e registrar as sensações da sua pele.',
+      placeholder: '[IMAGEM BÔNUS 1 - Planner de Cuidados]',
     },
     {
-      number: '02',
+      num: '02',
       badge: 'BÔNUS 02',
-      icon: '📑',
-      title: 'Organizador Financeiro Casal 35-55',
-      originalPrice: 'de R$37 por GRÁTIS',
-      description: 'Ferramenta mensal (digital + imprimível) para vocês organizarem entradas, divisão de contas, cartões e o quanto conseguem poupar a dois. Entrou → saiu → sobrou → guardou.',
-      highlight: 'Incluso no Plano Completo',
-      imageUrl: 'https://i.imgur.com/lDca5L2.png',
+      title: 'Checklist da Rotina de Pele Diária',
+      value: 'de R$ 37 por GRÁTIS',
+      desc: 'Folhas práticas matinais e noturnas para imprimir ou ticar no celular, garantindo que você nunca se esqueça de um passo essencial.',
+      placeholder: '[IMAGEM BÔNUS 2 - Checklist da Rotina]',
     },
     {
-      number: '03',
+      num: '03',
       badge: 'BÔNUS 03',
-      icon: '🧭',
-      title: 'Bússola dos Investimentos em Família',
-      originalPrice: 'de R$37 por GRÁTIS',
-      description: 'Ferramenta de comparação para o casal entender risco, rentabilidade e liquidez antes de decidirem juntos onde colocar as economias da família.',
-      highlight: 'Incluso no Plano Completo',
-      imageUrl: 'https://i.imgur.com/a2jVi9f.png',
+      title: 'Guia das Áreas que Mais Incomodam',
+      value: 'de R$ 47 por GRÁTIS',
+      desc: 'Passo a passo dedicado e ultra suave para contorno dos olhos, pescoço, colo e lábios — áreas que exigem toque delicado e hidratação focada.',
+      placeholder: '[IMAGEM BÔNUS 3 - Guia das Áreas Críticas]',
     },
     {
-      number: '04',
+      num: '04',
       badge: 'BÔNUS 04',
-      icon: '🧮',
-      title: 'Calculadora do Futuro dos Filhos & Casal',
-      originalPrice: 'de R$27 por GRÁTIS',
-      description: 'Simule cenários e descubra o que o casal consegue construir começando agora para a faculdade dos filhos e aposentadoria — em 5, 10, 15 ou 20 anos.',
-      highlight: 'Incluso no Plano Completo',
-      imageUrl: 'https://i.imgur.com/LeK59sT.png',
+      title: 'Guia dos Maiores Erros na Rotina de Cuidados',
+      value: 'de R$ 37 por GRÁTIS',
+      desc: 'Descubra os 7 deslizes mais frequentes que detonam a barreira da pele (como água muito quente ou esfregar toalha) e como corrigi-los hoje mesmo.',
+      placeholder: '[IMAGEM BÔNUS 4 - Guia dos Erros Comuns]',
     },
     {
-      number: '05',
+      num: '05',
       badge: 'BÔNUS 05',
-      icon: '📋',
-      title: 'Checklist Anti-Briga: Acordo Financeiro de Convivência',
-      originalPrice: 'de R$29 por GRÁTIS',
-      description: 'Mapas visuais extras de planejamento de casal + Checklist prático de divisão de contas e limites de gastos no cartão para blindar a harmonia do lar.',
-      highlight: 'Incluso no Plano Completo',
-      imageUrl: 'https://i.imgur.com/riH01cm.png',
+      title: 'Calendário de Autocuidado & Hábitos',
+      value: 'de R$ 29 por GRÁTIS',
+      desc: 'Um mapa mensal de pequenos hábitos que potencializam o viço: ingestão de água, trocas de fronha de travesseiro, sono reparador e pausas antiestresse.',
+      placeholder: '[IMAGEM BÔNUS 5 - Calendário de Autocuidado]',
+    },
+    {
+      num: '06',
+      badge: 'BÔNUS 06',
+      title: 'Kit de Rotinas Extras: Pré-Make & Spa de Domingo',
+      value: 'de R$ 47 por GRÁTIS',
+      desc: 'Roteiros especiais para preparar a pele antes da maquiagem (sem craquelar) e um mini ritual de spa facial relaxante para fazer no fim de semana.',
+      placeholder: '[IMAGEM BÔNUS 6 - Kit de Rotinas Extras]',
     },
   ];
 
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF9F5] border-t border-[#E8E4DA]">
-      <div className="max-w-3xl mx-auto">
-        {/* Kit Overview Card */}
-        <div className="text-center mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#14261E] font-serif mb-4">
-            Tudo que você vai receber
+    <section className="py-14 sm:py-20 px-4 sm:px-6 bg-[#FAF6F7] border-t border-[#F2E5E8]">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FCE8ED] border border-[#F5C7D3] text-[#A63152] text-xs font-bold uppercase tracking-wider mb-3">
+            <Gift className="w-3.5 h-3.5 text-[#C44369]" />
+            <span>EXCLUSIVOS NO PLANO COMPLETO</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A161E] font-serif tracking-tight mb-3">
+            Leve + 6 Bônus de Presente
           </h2>
-
-          {/* Kit mockup / cover image without background boxes */}
-          <div className="max-w-xl mx-auto mb-10 flex flex-col items-center">
-            <div className="w-full flex items-center justify-center mb-6">
-              <img 
-                src="https://i.imgur.com/uL8cEEL.png" 
-                alt="Kit Finanças para Casais - 50 Mapas Visuais + Plano de Ação Completo"
-                className="w-full max-w-[480px] h-auto object-contain drop-shadow-xl"
-                loading="eager"
-              />
-            </div>
-
-            {/* Checklist of core package */}
-            <div className="w-full space-y-2.5 text-left text-xs sm:text-sm text-[#20372B]">
-              <div className="flex items-center gap-2.5 p-3 bg-white/90 rounded-xl border border-[#E3DDD1] shadow-xs">
-                <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>
-                <span><strong>50 mapas visuais</strong> divididos em 5 etapas (organização, dívidas, reserva, investimentos, futuro)</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 bg-white/90 rounded-xl border border-[#E3DDD1] shadow-xs">
-                <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>
-                <span><strong>Material de aprendizado E de consulta</strong> — volte sempre que o casal precisar</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 bg-white/90 rounded-xl border border-[#E3DDD1] shadow-xs">
-                <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>
-                <span><strong>Acesso vitalício</strong>, no seu tempo</span>
-              </div>
-              <div className="flex items-center gap-2.5 p-3 bg-white/90 rounded-xl border border-[#E3DDD1] shadow-xs">
-                <span className="w-4 h-4 rounded-sm bg-[#227B4E] text-white flex items-center justify-center text-xs font-bold shrink-0">✓</span>
-                <span><strong>Linguagem simples</strong>, sem enrolação</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Bonus callout banner */}
-          <div className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-[#FFF7E6] border border-[#F5D896] text-[#8C6010] text-xs sm:text-sm font-extrabold uppercase tracking-wide shadow-xs text-center leading-snug">
-            <span>+ 5 BÔNUS EXCLUSIVOS INCLUSOS NO PLANO COMPLETO</span>
-          </div>
-          <p className="text-xs sm:text-sm text-[#5B7366] mt-2">
-            O <strong>Plano Completo</strong> inclui todos os 5 bônus abaixo sem nenhum custo adicional.
+          <p className="text-xs sm:text-sm text-[#61454F] leading-relaxed">
+            Ao escolher o <strong>Plano Completo</strong> hoje, você garante acesso gratuito a todos os 6 materiais complementares abaixo (mais de R$ 240 em bônus inclusos sem custo extra):
           </p>
         </div>
 
-        {/* 5 Bonus Cards matching original visual hierarchy */}
-        <div className="space-y-6">
+        {/* 6 Bonus Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mb-10">
           {bonuses.map((b) => (
             <div
-              key={b.number}
-              className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-[#E3DDD1] hover:shadow-md transition-shadow"
+              key={b.num}
+              className="bg-white rounded-3xl p-5 border border-[#F0DCE2] shadow-sm hover:shadow-md hover:border-[#D45B7A] transition-all flex flex-col justify-between"
             >
-              {/* Bonus image without box or artificial background */}
-              <div className="w-full flex items-center justify-center py-2 sm:py-3 mb-4">
-                <img
-                  src={b.imageUrl}
-                  alt={b.title}
-                  className="w-full max-w-[440px] max-h-[260px] sm:max-h-[300px] h-auto object-contain drop-shadow-md"
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                />
-              </div>
+              <div>
+                <div className="mb-4">
+                  <ImagePlaceholder
+                    label={b.placeholder}
+                    subtext="Mockup do material em PDF para download"
+                    aspect="aspect-[4/3]"
+                    badge={b.badge}
+                  />
+                </div>
 
-              {/* Bonus details */}
-              <div className="text-center">
-                <div className="flex flex-col items-center justify-center gap-1.5 mb-2">
-                  <h3 className="text-base sm:text-lg font-bold text-[#14291F] text-center leading-snug">
-                    <span className="mr-1.5 text-lg sm:text-xl inline-block align-middle">{b.icon}</span>
-                    <span className="align-middle">{b.title}</span>
-                  </h3>
-                  <span className="text-xs font-bold text-[#1B4332] bg-[#E5EFE8] px-2.5 py-0.5 rounded-full inline-block">
-                    {b.originalPrice}
+                <div className="flex items-center justify-between gap-2 mb-2">
+                  <span className="text-xs font-bold text-[#C44369] bg-[#FAF0F3] px-2.5 py-0.5 rounded-full">
+                    {b.badge}
+                  </span>
+                  <span className="text-[11px] font-semibold text-[#4E7D65] bg-[#EBF4EF] px-2 py-0.5 rounded-full">
+                    {b.value}
                   </span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#4E6659] leading-relaxed max-w-xl mx-auto">
-                  {b.description}
-                </p>
+                <h3 className="text-sm sm:text-base font-bold text-[#2C1720] mb-2 leading-snug">
+                  {b.title}
+                </h3>
 
-                <div className="mt-3 flex items-center justify-center gap-2 text-[11px] text-[#A27218] font-bold uppercase tracking-wider">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E5A83B]" />
-                  <span>{b.highlight}</span>
-                </div>
+                <p className="text-xs text-[#634C55] leading-relaxed">
+                  {b.desc}
+                </p>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-[#F2E5E8] flex items-center gap-1.5 text-xs font-semibold text-[#4E7D65]">
+                <Check className="w-4 h-4 stroke-[2.5]" />
+                <span>Incluso no Plano Completo</span>
               </div>
             </div>
           ))}

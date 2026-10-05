@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, MessageCircle, ShieldCheck, Clock } from 'lucide-react';
+import { ChevronDown, ChevronUp, HelpCircle, ArrowRight } from 'lucide-react';
 
 interface FaqSectionProps {
   onScrollToPlans: () => void;
@@ -8,102 +8,89 @@ interface FaqSectionProps {
 export const FaqSection: React.FC<FaqSectionProps> = ({ onScrollToPlans }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleFaq = (idx: number) => {
-    setOpenIndex((prev) => (prev === idx ? null : idx));
-  };
-
   const faqs = [
     {
-      question: 'Preciso entender de finanças para usar?',
-      answer:
-        'Não! Os mapas visuais foram desenhados especificamente para quem não entende e não tem paciência com termos complicados de economia. Vocês olham os esquemas visuais e em poucos minutos já sabem o que fazer.',
+      q: 'O que é o Protocolo Pele Jovem?',
+      a: 'É uma jornada digital prática de 21 dias desenvolvida para ajudar mulheres a organizar, descomplicar e aplicar uma rotina real e consistente de cuidados faciais. O foco é ensinar a ordem certa dos passos, criar hábitos sustentáveis e resgatar a sensação de pele viçosa, macia e bem cuidada.',
     },
     {
-      question: 'É um curso em vídeo longo?',
-      answer:
-        'Não! O foco é consulta prática e direta ao ponto. Não são horas de aulas cansativas em vídeo. São 50 mapas visuais objetivos que você pode consultar no celular, no computador ou até imprimir para preencher a dois.',
+      q: 'Como recebo o acesso?',
+      a: 'Imediatamente após a confirmação do pagamento, você recebe os dados de acesso à Área de Membros no seu e-mail cadastrado e também por WhatsApp. É rápido, automático e 100% seguro.',
     },
     {
-      question: 'Funciona no celular e no computador?',
-      answer:
-        'Sim! O material está em formato 100% digital otimizado em alta resolução (PDF e web interativo). Vocês podem abrir no WhatsApp, no leitor do smartphone, tablet ou tela do computador.',
+      q: 'É apenas um ebook?',
+      a: 'Não! O Protocolo é uma experiência completa dentro de uma plataforma digital exclusiva. Você encontra vídeos com explicações passo a passo, guias visuais em PDF, checklists imprimíveis de acompanhamento diário e materiais complementares.',
     },
     {
-      question: 'Como eu e meu parceiro(a) recebemos o material?',
-      answer:
-        'O envio é imediato e automático. Assim que a sua compra for confirmada, o link de acesso direto chega no seu e-mail e também no seu WhatsApp cadastrado.',
+      q: 'Como funciona a jornada de 21 dias?',
+      a: 'Cada dia traz uma orientação simples e rápida (menos de 5 minutos) para você aplicar diretamente no seu espelho. Começando pelo pente-fino dos seus produtos atuais, passando pela estruturação da rotina matinal e noturna, até a consolidação de hábitos duradouros.',
     },
     {
-      question: 'Tem prazo de validade para acessar?',
-      answer:
-        'Não! O acesso é vitalício. Uma vez adquirido, o material é de vocês para sempre. Podem baixar e consultar sempre que forem planejar o mês, os investimentos ou o futuro dos filhos.',
+      q: 'Preciso fazer os 21 dias seguidos sem parar?',
+      a: 'Não. Embora a jornada tenha sido desenhada em 21 etapas pedagógicas, você tem total autonomia para seguir no seu próprio ritmo. Se você tiver um dia corrido ou viajar no fim de semana, você continua exatamente de onde parou.',
     },
     {
-      question: 'Os bônus são realmente grátis?',
-      answer:
-        'Sim! No Plano Completo de R$ 29,90 todos os 5 bônus extras (incluindo o Raio-X, Organizador Financeiro, Bússola e Checklist Anti-Briga) saem com 100% de desconto.',
+      q: 'Todos os 21 dias já ficam disponíveis de imediato?',
+      a: 'Sim! Não há nenhuma trava de liberação ou sistema artificial de espera. Todos os 21 dias e os bônus ficam 100% disponíveis desde o seu primeiro minuto de acesso.',
     },
     {
-      question: 'E se o meu marido/esposa não quiser participar no começo?',
-      answer:
-        'A beleza dos mapas é que eles são tão fáceis e visuais que desarmam qualquer resistência. Você pode começar aplicando os mapas de organização pessoal e da casa. Quando o outro parceiro vê os resultados e a tranquilidade, o engajamento é natural.',
+      q: 'Posso acessar pelo celular?',
+      a: 'Com certeza. A plataforma é 100% otimizada para smartphones. Você pode abrir o celular na bancada do banheiro enquanto faz seu ritual matinal ou noturno.',
     },
     {
-      question: 'Como funciona a garantia de 7 dias?',
-      answer:
-        'Se por qualquer razão vocês sentirem que o produto não atendeu às suas expectativas, basta nos enviar uma mensagem e nós devolveremos 100% do seu dinheiro, sem letras miúdas.',
+      q: 'Preciso comprar cosméticos específicos ou caros?',
+      a: 'Não! Um dos grandes pilares do Protocolo é ensinar você a aproveitar o que já tem em casa. Você vai aprender a selecionar produtos acessíveis e entender como combiná-los sem precisar gastar fortunas na farmácia.',
     },
     {
-      question: 'O pagamento é seguro?',
-      answer:
-        'Sim, 100% seguro! Seus dados são processados com certificação bancária e criptografia de 256 bits via PIX imediato ou cartão de crédito.',
+      q: 'O Plano Completo vale a pena?',
+      a: 'Sim, é a opção mais escolhida! Por uma diferença de apenas alguns reais você garante todos os 6 Bônus Exclusivos (Planner de Cuidados, Checklist Diário, Guia das Áreas Críticas, Guia dos Maiores Erros, Calendário e Rotinas Extras de Spa e Pré-Make).',
+    },
+    {
+      q: 'Como funciona a garantia incondicional de 7 dias?',
+      a: 'Se dentro de 7 dias você acessar o material e sentir que ele não atendeu suas expectativas, basta enviar um e-mail para o suporte e devolveremos 100% do valor pago, sem burocracia.',
     },
   ];
 
-  // Helper for WhatsApp click
-  const handleWhatsAppClick = () => {
-    const message = encodeURIComponent(
-      'Olá! Gostaria de tirar uma dúvida sobre o kit Finanças para Casais.'
-    );
-    window.open(`https://wa.me/5511999999999?text=${message}`, '_blank');
+  const toggle = (idx: number) => {
+    setOpenIndex(openIndex === idx ? null : idx);
   };
 
-  const today = new Date();
-  const dateFormatted = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear()}`;
-
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-[#FAF9F5] border-t border-[#E8E3D8]">
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-10">
-          <span className="text-xs font-bold tracking-widest text-[#21573D] uppercase block mb-2">
-            PERGUNTAS FREQUENTES
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#14261E] font-serif">
-            Ficou com alguma dúvida?
+    <section className="py-14 sm:py-20 px-4 sm:px-6 bg-white border-t border-[#F2E5E8]">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
+        <div className="text-center max-w-xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FAF0F3] border border-[#F5D8E0] text-[#9E3352] text-xs font-bold uppercase tracking-wider mb-3">
+            <HelpCircle className="w-3.5 h-3.5 text-[#C44369]" />
+            <span>DÚVIDAS FREQUENTES</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#2A161E] font-serif tracking-tight mb-3">
+            Perguntas Frequentes
           </h2>
-          <p className="text-xs sm:text-sm text-[#5D7668] mt-1.5">
-            Clique na pergunta para ver a resposta detalhada
+          <p className="text-xs sm:text-sm text-[#61454F] leading-relaxed">
+            Tire todas as suas dúvidas sobre o acesso, funcionamento e formato do Protocolo Pele Jovem.
           </p>
         </div>
 
-        {/* Accordion */}
+        {/* Accordion list */}
         <div className="space-y-3 mb-10">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="bg-white rounded-xl border border-[#E3DDD1] shadow-xs overflow-hidden transition-all"
+                className="bg-[#FCF9FA] rounded-2xl border border-[#F0DCE2] overflow-hidden transition-all shadow-xs"
               >
                 <button
                   type="button"
-                  onClick={() => toggleFaq(idx)}
-                  className="w-full p-4 sm:p-4.5 flex items-center justify-between gap-3 text-left hover:bg-[#FAF9F5] transition-colors cursor-pointer"
+                  onClick={() => toggle(idx)}
+                  className="w-full p-4 sm:p-5 flex items-center justify-between gap-3 text-left hover:bg-[#F9EEF1] transition-colors cursor-pointer"
                 >
-                  <span className="text-sm sm:text-base font-semibold text-[#183124]">
-                    {faq.question}
+                  <span className="font-semibold text-xs sm:text-sm text-[#2E1821] leading-snug">
+                    {faq.q}
                   </span>
-                  <div className="w-7 h-7 rounded-full bg-[#F3F0E6] flex items-center justify-center text-[#4A3E2A] shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-[#A63152] shrink-0 border border-[#EACCD6]">
                     {isOpen ? (
                       <ChevronUp className="w-4 h-4" />
                     ) : (
@@ -113,8 +100,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onScrollToPlans }) => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-4 pt-1 text-xs sm:text-sm text-[#4E6659] leading-relaxed border-t border-[#F2EEE4] bg-[#FCFBF8]">
-                    {faq.answer}
+                  <div className="px-4 sm:px-5 pb-5 pt-1 text-xs sm:text-[13px] text-[#5C424C] leading-relaxed border-t border-[#F2E5E8] bg-white">
+                    <p className="mt-2">{faq.a}</p>
                   </div>
                 )}
               </div>
@@ -122,35 +109,20 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onScrollToPlans }) => {
           })}
         </div>
 
-        {/* WhatsApp Direct Help Button as required by instructions */}
-        <div className="bg-[#EBF7F0] border border-[#BCE4CD] rounded-2xl p-6 text-center mb-12 shadow-xs">
-          <p className="text-sm font-semibold text-[#16492F] mb-1">
-            Prefere tirar alguma dúvida diretamente com nossa equipe?
+        {/* CTA below FAQ */}
+        <div className="text-center bg-[#FAF5F7] rounded-3xl p-6 sm:p-8 border border-[#EED7DE]">
+          <h3 className="text-base sm:text-lg font-bold text-[#2B161E] mb-2 font-serif">
+            Ainda tem alguma dúvida?
+          </h3>
+          <p className="text-xs sm:text-sm text-[#6B505A] mb-4 max-w-md mx-auto">
+            Comece hoje sem nenhum risco com a nossa garantia de 7 dias e sinta o carinho de uma rotina bem cuidada.
           </p>
-          <p className="text-xs text-[#457259] mb-4">
-            Estamos online no WhatsApp para te ajudar a escolher a melhor opção para sua família.
-          </p>
-          <button
-            onClick={handleWhatsAppClick}
-            className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#20BE5B] active:scale-[0.99] text-white font-bold text-sm sm:text-base py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
-          >
-            <MessageCircle className="w-5 h-5 fill-white" />
-            <span>Me manda mensagem no WhatsApp</span>
-          </button>
-        </div>
-
-        {/* Final CTA Bar matching original */}
-        <div className="text-center pt-2">
-          <p className="text-xs font-semibold text-[#668072] mb-3 flex items-center justify-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-[#E5A83B]" />
-            Oferta válida até hoje, <strong className="text-[#132B20]">{dateFormatted}</strong> às 23:59
-          </p>
-
           <button
             onClick={onScrollToPlans}
-            className="w-full max-w-md mx-auto bg-[#E5A83B] hover:bg-[#D4982B] active:scale-[0.99] text-[#15231B] font-bold text-base sm:text-lg uppercase tracking-wide py-4 px-6 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center cursor-pointer border-t border-[#FEE199]"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C24168] to-[#D64E76] hover:from-[#B1355A] hover:to-[#B1355A] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wide py-3 px-6 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
           >
-            <span>QUERO ME ORGANIZAR AGORA</span>
+            <span>QUERO COMEÇAR AGORA</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
