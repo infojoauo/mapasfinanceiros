@@ -8,9 +8,9 @@
 // 1. CHECKOUTS E LINKS DE CONVERSÃO
 // Cole aqui os links de checkout da Kiwify, Hotmart, Eduzz, etc.
 // --------------------------------------------------------
-export const CHECKOUT_BASICO_URL = "COLE_AQUI_O_LINK_DO_CHECKOUT_BASICO";
-export const CHECKOUT_COMPLETO_URL = "COLE_AQUI_O_LINK_DO_CHECKOUT_COMPLETO";
-export const CHECKOUT_UPGRADE_URL = "COLE_AQUI_O_LINK_DO_CHECKOUT_UPGRADE";
+export const CHECKOUT_BASICO_URL = "https://app.zuptos.com.br/checkout/a1a5a3427164bc4c";
+export const CHECKOUT_COMPLETO_URL = "https://app.zuptos.com.br/checkout/10cbb509bde9bf13";
+export const CHECKOUT_UPGRADE_URL = "https://app.zuptos.com.br/checkout/f1b3420a1d383e74";
 
 // Função para repassar dinamicamente UTMs e parâmetros de rastreamento aos checkouts
 export function buildCheckoutUrl(baseUrl: string): string {
