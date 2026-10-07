@@ -63,7 +63,9 @@ export const BenefitsSection: React.FC<BenefitsSectionProps> = ({ onScrollToPric
                   }}
                   alt={card.alt}
                   className="w-7 h-7 object-contain"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
 

@@ -26,7 +26,9 @@ export const ImageSlot: React.FC<ImageSlotProps> = ({
         <img
           src={src}
           alt={alt}
-          loading="lazy"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           className={`${imgClassName} ${rounded} transition-opacity duration-300 w-full`}
         />
       </div>

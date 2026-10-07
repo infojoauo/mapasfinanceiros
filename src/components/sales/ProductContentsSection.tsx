@@ -42,7 +42,9 @@ export const ProductContentsSection: React.FC = () => {
                 src={CONTENTS_MOCKUP_IMAGE}
                 alt="120 Atividades Visuais de Ciências"
                 className="w-full h-auto object-contain rounded-[12px] block mx-auto transition-transform hover:scale-102 duration-300"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             ) : (
               <ImageSlot

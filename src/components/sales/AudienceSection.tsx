@@ -54,7 +54,9 @@ export const AudienceSection: React.FC = () => {
                   }}
                   alt="Check"
                   className="w-6 h-6 object-contain"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
 

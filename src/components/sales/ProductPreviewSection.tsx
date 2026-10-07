@@ -50,7 +50,9 @@ export const ProductPreviewSection: React.FC = () => {
                 <img
                   src={item.url}
                   alt={item.title}
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover rounded-[12px] block"
                 />
               </div>
@@ -70,7 +72,9 @@ export const ProductPreviewSection: React.FC = () => {
                 <img
                   src={item.url}
                   alt={item.title}
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover rounded-[12px] block"
                 />
               </div>

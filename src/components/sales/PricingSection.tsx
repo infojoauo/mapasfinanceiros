@@ -32,10 +32,10 @@ export const PricingSection: React.FC = () => {
             92% das professoras escolhem o Plano Completo
           </p>
 
-          {/* 2 Plans Side-by-Side */}
+          {/* 2 Plans Side-by-Side: Plano Completo on top on mobile, side-by-side on desktop */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-6 lg:gap-8 items-start max-w-[880px] mx-auto text-left">
-            {/* PLANO BÁSICO */}
-            <div className="bg-white rounded-[20px] p-6 sm:p-7 border-2 border-[#e4ede8] shadow-xs flex flex-col justify-between h-full">
+            {/* PLANO BÁSICO - Aparece em baixo no mobile, à esquerda no desktop */}
+            <div className="order-2 md:order-1 bg-white rounded-[20px] p-6 sm:p-7 border-2 border-[#e4ede8] shadow-xs flex flex-col justify-between h-full">
               <div>
                 {/* Image */}
                 <div className="w-full max-w-[280px] sm:max-w-[320px] mx-auto mb-4 overflow-hidden rounded-[12px] bg-[#f8faf8]">
@@ -43,7 +43,9 @@ export const PricingSection: React.FC = () => {
                     src={PLAN_BASIC_IMAGE}
                     alt="Plano Básico"
                     className="w-full h-auto object-contain rounded-[12px] block mx-auto transition-transform hover:scale-102 duration-300"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                   />
                 </div>
 
@@ -88,8 +90,8 @@ export const PricingSection: React.FC = () => {
               </div>
             </div>
 
-            {/* PLANO COMPLETO (RECOMENDADO / MAIS VENDIDO) */}
-            <div className="bg-white rounded-[20px] p-6 sm:p-7 border-2 border-[#16a34a] shadow-[0_16px_40px_rgba(22,163,74,0.18)] flex flex-col justify-between h-full relative">
+            {/* PLANO COMPLETO - Aparece em cima no mobile (order-1), à direita no desktop (md:order-2) */}
+            <div className="order-1 md:order-2 bg-white rounded-[20px] p-6 sm:p-7 border-2 border-[#16a34a] shadow-[0_16px_40px_rgba(22,163,74,0.18)] flex flex-col justify-between h-full relative">
               {/* Floating Badge */}
               <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#16a34a] text-white font-black text-xs sm:text-sm px-4.5 py-1.5 rounded-full shadow-md whitespace-nowrap">
                 {COMPLETE_PLAN.badge}
@@ -102,7 +104,9 @@ export const PricingSection: React.FC = () => {
                     src={PLAN_COMPLETE_IMAGE}
                     alt="Plano Completo"
                     className="w-full h-auto object-contain rounded-[12px] block mx-auto transition-transform hover:scale-102 duration-300"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                   />
                 </div>
 

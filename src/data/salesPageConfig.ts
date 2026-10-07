@@ -18,12 +18,36 @@ export function buildCheckoutUrl(baseUrl: string): string {
   if (baseUrl.includes('COLE_AQUI')) return '#oferta';
   try {
     const url = new URL(baseUrl, window.location.href);
+
+    // 1. Captura parâmetros da URL atual
     const currentParams = new URLSearchParams(window.location.search);
+
+    // 2. Salva na sessionStorage para persistência (não perde tracking ao navegar)
     currentParams.forEach((val, key) => {
-      if (!url.searchParams.has(key)) {
-        url.searchParams.set(key, val);
-      }
+      try {
+        sessionStorage.setItem(`track_${key}`, val);
+      } catch {}
     });
+
+    // 3. Aplica todos os parâmetros atuais na URL de checkout
+    currentParams.forEach((val, key) => {
+      url.searchParams.set(key, val);
+    });
+
+    // 4. Recupera parâmetros salvos caso a URL tenha sido limpa
+    try {
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const storageKey = sessionStorage.key(i);
+        if (storageKey && storageKey.startsWith('track_')) {
+          const paramName = storageKey.replace('track_', '');
+          const paramVal = sessionStorage.getItem(storageKey);
+          if (paramVal && !url.searchParams.has(paramName)) {
+            url.searchParams.set(paramName, paramVal);
+          }
+        }
+      }
+    } catch {}
+
     return url.toString();
   } catch {
     return baseUrl;
@@ -190,6 +214,42 @@ export const BONUSES = [
     originalPrice: "R$27",
     imageKey: "BONUS_4_IMAGE",
     imageUrl: BONUS_4_IMAGE,
+  },
+];
+
+// --------------------------------------------------------
+// 5.1. DEPOIMENTOS DE CLIENTES / PROFESSORAS
+// --------------------------------------------------------
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    imageUrl: "https://i.imgur.com/qhLHeGP.jpeg",
+    alt: "Depoimento de professora aprovando as atividades de ciências",
+  },
+  {
+    id: 2,
+    imageUrl: "https://i.imgur.com/UKuXfSc.jpeg",
+    alt: "Feedback de educadora utilizando o material em sala de aula",
+  },
+  {
+    id: 3,
+    imageUrl: "https://i.imgur.com/f7GWvFZ.jpeg",
+    alt: "Avaliação positiva das atividades visuais",
+  },
+  {
+    id: 4,
+    imageUrl: "https://i.imgur.com/LFGspim.jpeg",
+    alt: "Comentário de professora elogiando a praticidade e visual",
+  },
+  {
+    id: 5,
+    imageUrl: "https://i.imgur.com/PsTVdiF.jpeg",
+    alt: "Relato de economia de tempo na preparação de aulas",
+  },
+  {
+    id: 6,
+    imageUrl: "https://i.imgur.com/4RiVUHQ.jpeg",
+    alt: "Depoimento sobre o engajamento dos alunos com o material",
   },
 ];
 

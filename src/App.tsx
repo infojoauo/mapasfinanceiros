@@ -8,6 +8,7 @@ import { HoursComparisonSection } from './components/sales/HoursComparisonSectio
 import { AudienceSection } from './components/sales/AudienceSection';
 import { ProductContentsSection } from './components/sales/ProductContentsSection';
 import { BonusesSection } from './components/sales/BonusesSection';
+import { TestimonialsSection } from './components/sales/TestimonialsSection';
 import { PricingSection } from './components/sales/PricingSection';
 import { GuaranteeSection } from './components/sales/GuaranteeSection';
 import { HowItWorksSection } from './components/sales/HowItWorksSection';
@@ -15,6 +16,16 @@ import { FaqSection } from './components/sales/FaqSection';
 import { Footer } from './components/sales/Footer';
 
 export default function App() {
+  // Captura e armazena automaticamente todas as UTMs assim que a página é carregada
+  React.useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      params.forEach((val, key) => {
+        sessionStorage.setItem(`track_${key}`, val);
+      });
+    } catch {}
+  }, []);
+
   const scrollToPricing = () => {
     const el = document.getElementById('oferta');
     if (el) {
@@ -51,6 +62,9 @@ export default function App() {
 
         {/* SEÇÃO 8 — E AINDA TEM MAIS: 4 BÔNUS EXCLUSIVOS */}
         <BonusesSection />
+
+        {/* SEÇÃO 8.1 — DEPOIMENTOS DE PROFESSORAS (CARROSSEL) */}
+        <TestimonialsSection />
 
         {/* SEÇÃO 9 — ESCOLHA A OPÇÃO IDEAL PARA VOCÊ (PLANO BÁSICO R$10 & PLANO COMPLETO R$27,90 + POPUP R$17,90) */}
         <PricingSection />

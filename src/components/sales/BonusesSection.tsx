@@ -24,7 +24,9 @@ export const BonusesSection: React.FC = () => {
                 <img
                   src={bonus.imageUrl}
                   alt={bonus.title}
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-auto object-cover rounded-[10px] block"
                 />
               </div>
