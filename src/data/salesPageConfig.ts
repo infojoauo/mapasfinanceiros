@@ -55,9 +55,10 @@ export function buildCheckoutUrl(baseUrl: string): string {
 }
 
 // --------------------------------------------------------
-// 2. PLACEHOLDERS DE IMAGENS PRINCIPAIS
-// Deixados vazios para você colar as URLs posteriormente
+// 2. VÍDEO E IMAGENS PRINCIPAIS DA HEADLINE (HERO)
+// Vídeo otimizado com faststart para carregamento instantâneo
 // --------------------------------------------------------
+export const HERO_VIDEO_URL = "/video.mp4";
 export const HERO_MOCKUP_IMAGE = "";
 export const CONTENTS_MOCKUP_IMAGE = "https://i.imgur.com/2VARx0Q.jpeg";
 export const GUARANTEE_SEAL_IMAGE = "";
