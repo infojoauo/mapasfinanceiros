@@ -7,7 +7,7 @@ import { SolutionSection } from './components/sales/SolutionSection';
 import { ProductPreviewSection } from './components/sales/ProductPreviewSection';
 import { HowItWorksSection } from './components/sales/HowItWorksSection';
 import { ProductContentsSection } from './components/sales/ProductContentsSection';
-import { BenefitsSection } from './components/sales/BenefitsSection';
+import { BonusSection } from './components/sales/BonusSection';
 import { TestimonialsSection } from './components/sales/TestimonialsSection';
 import { PricingSection } from './components/sales/PricingSection';
 import { GuaranteeSection } from './components/sales/GuaranteeSection';
@@ -61,8 +61,8 @@ export default function App() {
         {/* 6. O QUE ESTÁ INCLUÍDO: Lista clara de materiais e formatos */}
         <ProductContentsSection />
 
-        {/* 7. BENEFÍCIOS: Vantagens para o professor e fluência da turma */}
-        <BenefitsSection onScrollToPricing={scrollToPricing} />
+        {/* 7. BÔNUS ESPECIAIS: 3 Cards de bônus para facilitar suas aulas */}
+        <BonusSection onScrollToPricing={scrollToPricing} />
 
         {/* 7.1 DEPOIMENTOS: O que dizem outros professores */}
         <TestimonialsSection onScrollToPricing={scrollToPricing} />

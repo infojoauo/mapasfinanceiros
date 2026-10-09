@@ -66,6 +66,17 @@ export const OFFER_MOCKUP_IMAGE: string = ""; // Imagem do kit na seção de pre
 export const GUARANTEE_SEAL_IMAGE: string = ""; // Selo de garantia (opcional)
 export const TESTIMONIALS_GALLERY_IMAGE: string = ""; // Print ou galeria de depoimentos do WhatsApp/Instagram (opcional)
 
+// Imagens reais de depoimentos enviadas pelo usuário para o carrossel
+export const TESTIMONIAL_IMAGES: string[] = [
+  "https://i.imgur.com/UK7FbsJ.jpeg",
+  "https://i.imgur.com/2XmW8Nf.jpeg",
+  "https://i.imgur.com/SSP8gzD.jpeg",
+  "https://i.imgur.com/EVIGqXl.jpeg",
+  "https://i.imgur.com/AJ45FTQ.jpeg",
+  "https://i.imgur.com/qvraI5n.jpeg",
+  "https://i.imgur.com/sEhW76x.jpeg",
+];
+
 // --------------------------------------------------------
 // 3. DADOS GERAIS DO PRODUTO
 // --------------------------------------------------------
@@ -141,15 +152,75 @@ export const PRICING_PLANS: PricingPlan[] = [
       { text: 'Cenários de Role-Play Contextualizados (Aeroporto, Hotel, Rotina)' },
       { text: 'Guias Rápidos com Instruções de Aplicação para o Professor' },
       { text: 'Arquivos em PDF de Alta Resolução prontos para impressão ou tela' },
-      { text: '🎁 BÔNUS #1: Guia Prático de Icebreakers & Warm-ups Rápidos (5 min)', isBonus: true },
-      { text: '🎁 BÔNUS #2: Pack de Fichas de Avaliação e Rubricas Orais', isBonus: true },
-      { text: '🎁 BÔNUS #3: Cartazes Visuais com Useful Classroom English Phrases', isBonus: true },
-      { text: '🎁 BÔNUS #4: Atualizações e Novos Prompts sem custo adicional', isBonus: true },
-      { text: 'Acesso Vitalício Completo com Suporte Prioritário', isHighlight: true },
+      { text: '🎁 BÔNUS #1: Conversation Cards (Cartões de Conversação para Duplas)', isBonus: true },
+      { text: '🎁 BÔNUS #2: Speaking Warm-ups (Atividades Rápidas de Abertura)', isBonus: true },
+      { text: '🎁 BÔNUS #3: Quick Speaking Activities (Dinâmicas Curtas de Conversação)', isBonus: true },
+      { text: 'Acesso Vitalício Completo ao Kit e Bônus', isHighlight: true },
       { text: 'Garantia Incondicional de 7 dias' },
     ],
   },
 ];
+
+// --------------------------------------------------------
+// 4.1 SEÇÃO DE BÔNUS ESPECIAIS (CONFIGURÁVEL)
+// Título, subtítulo e 3 cards de bônus exclusivos da oferta
+// --------------------------------------------------------
+export interface BonusCardItem {
+  id: number;
+  badge: string;
+  title: string;
+  description: string;
+  tag: string;
+  imageUrl?: string; // Insira a URL real da imagem aqui se desejar (ou deixe vazio para o mockup ilustrativo)
+  features: string[];
+}
+
+export const BONUSES_SECTION = {
+  badge: "Bônus Especiais",
+  title: "E tem mais: bônus especiais para facilitar suas aulas!",
+  subtitle: "Além do kit principal, tenha mais opções de atividades para estimular a conversação em inglês e facilitar o planejamento das suas aulas.",
+  items: [
+    {
+      id: 1,
+      badge: "BÔNUS 1",
+      title: "Conversation Cards",
+      description: "cartões com perguntas em inglês para estimular conversas entre duplas e pequenos grupos, incentivando os alunos a praticar o idioma.",
+      tag: "Pair & Group Work",
+      imageUrl: "", // Deixe vazio para usar o mockup ilustrativo ou insira sua URL
+      features: [
+        "Perguntas contextualizadas em inglês",
+        "Ideal para duplas e pequenos grupos",
+        "Formato pronto para imprimir e recortar",
+      ],
+    },
+    {
+      id: 2,
+      badge: "BÔNUS 2",
+      title: "Speaking Warm-ups",
+      description: "atividades rápidas para começar as aulas de inglês com perguntas e dinâmicas que incentivem a participação dos alunos.",
+      tag: "Primeiros 5-10 minutos",
+      imageUrl: "", // Deixe vazio para usar o mockup ilustrativo ou insira sua URL
+      features: [
+        "Quebra-gelo imediato no início da aula",
+        "Gera participação espontânea dos alunos",
+        "Dinâmicas ágeis de 5 a 10 minutos",
+      ],
+    },
+    {
+      id: 3,
+      badge: "BÔNUS 3",
+      title: "Quick Speaking Activities",
+      description: "ideias de atividades curtas de conversação para diversificar as aulas e facilitar a preparação do professor.",
+      tag: "Zero Preparação",
+      imageUrl: "", // Deixe vazio para usar o mockup ilustrativo ou insira sua URL
+      features: [
+        "Atividades curtas para qualquer momento",
+        "Diversifica a rotina da sala de aula",
+        "Economiza horas de planejamento do professor",
+      ],
+    },
+  ] as BonusCardItem[],
+};
 
 export const PRICING_CONFIG = {
   planName: "Acesso Completo ao Kit Speaking",
