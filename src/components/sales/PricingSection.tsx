@@ -1,166 +1,243 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  BASIC_PLAN,
-  COMPLETE_PLAN,
-  CHECKOUT_COMPLETO_URL,
-  PLAN_BASIC_IMAGE,
-  PLAN_COMPLETE_IMAGE,
+  PRICING_PLANS,
+  OFFER_MOCKUP_IMAGE,
+  PRODUCT_NAME,
   buildCheckoutUrl,
+  PricingPlan,
 } from '../../data/salesPageConfig';
-import { UpgradeModal } from './UpgradeModal';
-import { Check } from 'lucide-react';
+import { ImageSlot } from '../common/ImageSlot';
+import { Check, ShieldCheck, Zap, Sparkles, Gift, Star } from 'lucide-react';
 
 export const PricingSection: React.FC = () => {
-  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
-
-  const handleCompleteCheckout = () => {
-    const url = buildCheckoutUrl(CHECKOUT_COMPLETO_URL);
-    window.location.href = url;
+  const handlePlanCheckout = (plan: PricingPlan) => {
+    if (plan.checkoutUrl && plan.checkoutUrl.trim().length > 0) {
+      window.location.href = buildCheckoutUrl(plan.checkoutUrl);
+    } else {
+      alert(
+        `Para configurar o link de compra do "${plan.name}", adicione a URL em salesPageConfig.ts (${
+          plan.id === 'basico' ? 'CHECKOUT_URL' : 'CHECKOUT_COMPLETO_URL'
+        })!`
+      );
+    }
   };
 
+  const basicPlan = PRICING_PLANS.find((p) => p.id === 'basico') || PRICING_PLANS[0];
+  const completePlan = PRICING_PLANS.find((p) => p.id === 'completo') || PRICING_PLANS[1];
+
   return (
-    <>
-      <section id="oferta" className="py-14 sm:py-16 px-4 sm:px-6 bg-white text-center border-t border-[#e4ede8] scroll-mt-12">
-        <div className="max-w-[1080px] mx-auto">
-          {/* Main Title */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#0f2417] tracking-tight mb-2">
-            Escolha a opção ideal para você
-          </h2>
+    <section
+      id="oferta"
+      className="py-16 sm:py-24 px-4 sm:px-6 bg-[#081226] text-white text-center scroll-mt-12 relative overflow-hidden"
+    >
+      {/* Background glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/15 blur-[160px] pointer-events-none rounded-full" />
 
-          {/* Social Proof Subtitle */}
-          <p className="text-sm sm:text-base font-extrabold text-[#0f766e] mb-10 max-w-xl mx-auto">
-            92% das professoras escolhem o Plano Completo
-          </p>
+      <div className="max-w-[1140px] mx-auto relative z-10">
+        {/* Title */}
+        <span className="text-xs font-black uppercase tracking-widest text-blue-400 bg-blue-950/80 border border-blue-800 px-4 py-1.5 rounded-full inline-block mb-4">
+          Escolha o Plano Ideal para Você
+        </span>
 
-          {/* 2 Plans Side-by-Side: Plano Completo on top on mobile, side-by-side on desktop */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-6 lg:gap-8 items-start max-w-[880px] mx-auto text-left">
-            {/* PLANO BÁSICO - Aparece em baixo no mobile, à esquerda no desktop */}
-            <div className="order-2 md:order-1 bg-white rounded-[20px] p-6 sm:p-7 border-2 border-[#e4ede8] shadow-xs flex flex-col justify-between h-full">
-              <div>
-                {/* Image */}
-                <div className="w-full max-w-[280px] sm:max-w-[320px] mx-auto mb-4 overflow-hidden rounded-[12px] bg-[#f8faf8]">
-                  <img
-                    src={PLAN_BASIC_IMAGE}
-                    alt="Plano Básico"
-                    className="w-full h-auto object-contain rounded-[12px] block mx-auto transition-transform hover:scale-102 duration-300"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                  />
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight mb-3">
+          Garanta o seu {PRODUCT_NAME} hoje
+        </h2>
+
+        <p className="text-sm sm:text-lg text-slate-300 mb-12 sm:mb-16 max-w-2xl mx-auto font-medium">
+          Comece com o material essencial ou garanta o pacote completo com todos os bônus exclusivos inclusos.
+        </p>
+
+        {/* 2 Plans Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 max-w-5xl mx-auto items-stretch text-left">
+          {/* ======================================================== */}
+          {/* OFERTA 1: PLANO BÁSICO (R$ 10,00) - SOMENTE PRINCIPAL   */}
+          {/* ======================================================== */}
+          <div className="bg-slate-900/90 text-slate-100 rounded-3xl p-6 sm:p-8 border border-slate-700/80 shadow-xl flex flex-col justify-between relative hover:border-slate-500 transition-all">
+            <div>
+              {/* Badge */}
+              <div className="mb-4">
+                <span className="bg-slate-800 text-slate-300 border border-slate-700 font-extrabold text-[11px] sm:text-xs px-3.5 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5">
+                  <span>{basicPlan.badge}</span>
+                </span>
+              </div>
+
+              {/* Header */}
+              <h3 className="text-2xl sm:text-3xl font-black text-white mb-1">
+                {basicPlan.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400 font-medium mb-6">
+                {basicPlan.tagline}
+              </p>
+
+              {/* Price Block */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-slate-950/70 border border-slate-800 mb-6 text-center">
+                <p className="text-xs text-slate-400 mb-0.5">
+                  De <s className="text-slate-500">{basicPlan.originalPrice}</s> por apenas:
+                </p>
+                <div className="text-4xl sm:text-5xl font-black text-white leading-none my-1 tracking-tight">
+                  {basicPlan.currentPrice}
                 </div>
+                <span className="inline-block text-xs font-semibold text-slate-400 mt-1">
+                  {basicPlan.installments} • acesso vitalício
+                </span>
+              </div>
 
-                <h3 className="text-xl sm:text-2xl font-black text-[#0f2417] text-center mb-4">
-                  {BASIC_PLAN.name}
-                </h3>
-
-                {/* Bullets */}
-                <ul className="space-y-2.5 mb-6 text-sm text-[#0f2417]">
-                  {BASIC_PLAN.features.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 font-semibold">
-                      <span className="text-[#16a34a] font-black text-sm shrink-0 leading-none mt-1">
-                        <Check className="w-4 h-4 stroke-[3]" />
+              {/* Features List */}
+              <div className="mb-6">
+                <p className="text-[11px] font-black uppercase tracking-wider text-slate-400 mb-3">
+                  O que está incluído no Plano Básico:
+                </p>
+                <ul className="space-y-3 text-xs sm:text-sm text-slate-300">
+                  {basicPlan.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                      <span className="w-5 h-5 rounded-full bg-slate-800 text-slate-300 flex items-center justify-center shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                       </span>
-                      <span>{item}</span>
+                      <span className="font-medium text-slate-200">{feature.text}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-
-              {/* Price & CTA */}
-              <div className="pt-4 border-t border-[#e4ede8] text-center">
-                <p className="text-sm text-[#4b5d54] mb-1">
-                  de <s className="text-slate-400">{BASIC_PLAN.originalPrice}</s> por:
-                </p>
-                <div className="text-4xl sm:text-[44px] font-black text-[#15803d] leading-none my-1 tracking-tight">
-                  {BASIC_PLAN.price}
-                </div>
-                <div className="my-2">
-                  <span className="inline-block bg-[#dcfce7] text-[#15803d] font-extrabold text-xs sm:text-sm px-3.5 py-1 rounded-full">
-                    {BASIC_PLAN.saveBadge}
-                  </span>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => setIsUpgradeModalOpen(true)}
-                  className="w-full mt-4 bg-[#16a34a] hover:bg-[#15803d] active:scale-[0.99] text-white font-black text-xs sm:text-sm uppercase tracking-wider py-4 px-4 rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer"
-                >
-                  {BASIC_PLAN.cta}
-                </button>
               </div>
             </div>
 
-            {/* PLANO COMPLETO - Aparece em cima no mobile (order-1), à direita no desktop (md:order-2) */}
-            <div className="order-1 md:order-2 bg-white rounded-[20px] p-6 sm:p-7 border-2 border-[#16a34a] shadow-[0_16px_40px_rgba(22,163,74,0.18)] flex flex-col justify-between h-full relative">
-              {/* Floating Badge */}
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#16a34a] text-white font-black text-xs sm:text-sm px-4.5 py-1.5 rounded-full shadow-md whitespace-nowrap">
-                {COMPLETE_PLAN.badge}
-              </span>
+            {/* CTA & Trust */}
+            <div className="pt-4 mt-auto border-t border-slate-800">
+              <button
+                type="button"
+                onClick={() => handlePlanCheckout(basicPlan)}
+                className="w-full bg-slate-800 hover:bg-slate-700 active:scale-[0.99] text-white font-black text-sm sm:text-base uppercase tracking-wider py-4 px-6 rounded-2xl border border-slate-600 transition-all cursor-pointer text-center block shadow-md"
+              >
+                {basicPlan.cta}
+              </button>
 
-              <div>
-                {/* Image */}
-                <div className="w-full max-w-[280px] sm:max-w-[320px] mx-auto mb-4 mt-2 overflow-hidden rounded-[12px] bg-[#f8faf8]">
-                  <img
-                    src={PLAN_COMPLETE_IMAGE}
-                    alt="Plano Completo"
-                    className="w-full h-auto object-contain rounded-[12px] block mx-auto transition-transform hover:scale-102 duration-300"
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                  />
-                </div>
+              <div className="flex items-center justify-center gap-3 mt-3 text-[11px] font-bold text-slate-400">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                  Compra Segura
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Zap className="w-3.5 h-3.5 text-blue-400" />
+                  Acesso Imediato
+                </span>
+              </div>
+            </div>
+          </div>
 
-                <h3 className="text-xl sm:text-2xl font-black text-[#0f2417] text-center mb-4">
-                  {COMPLETE_PLAN.name}
+          {/* ======================================================== */}
+          {/* OFERTA 2: PLANO COMPLETO (R$ 26,90) - OFERTA COMPLETA    */}
+          {/* ======================================================== */}
+          <div className="bg-white text-slate-900 rounded-3xl p-6 sm:p-8 border-2 border-blue-500 shadow-[0_20px_60px_rgba(37,99,235,0.30)] flex flex-col justify-between relative transform lg:-translate-y-2">
+            {/* Ribbon Badge */}
+            <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black text-xs sm:text-[13px] px-5 py-1.5 rounded-full shadow-lg whitespace-nowrap uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-yellow-300 fill-yellow-300" />
+              <span>{completePlan.badge}</span>
+            </span>
+
+            <div>
+              {/* Header */}
+              <div className="mt-2 mb-4">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900">
+                  {completePlan.name}
                 </h3>
+                <p className="text-xs sm:text-sm text-slate-500 font-semibold mt-1">
+                  {completePlan.tagline}
+                </p>
+              </div>
 
-                {/* Bullets */}
-                <ul className="space-y-2 mb-6 text-sm text-[#0f2417]">
-                  {COMPLETE_PLAN.features.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 font-semibold">
-                      <span className="text-[#16a34a] font-black text-sm shrink-0 leading-none mt-1">
-                        <Check className="w-4 h-4 stroke-[3]" />
-                      </span>
-                      <span className={idx >= 5 ? 'font-bold text-[#15803d]' : 'font-semibold'}>
-                        {item}
-                      </span>
+              {/* Slot de Imagem do Kit Completo na Oferta */}
+              <div className="mb-5">
+                <ImageSlot
+                  src={OFFER_MOCKUP_IMAGE}
+                  alt="Kit Speaking Completo com Bônus"
+                  label="MOCKUP DO PACOTE COMPLETO COM BÔNUS"
+                  aspect="aspect-[16/9]"
+                  className="bg-slate-50 border border-slate-200"
+                />
+              </div>
+
+              {/* Price Block */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/70 border border-blue-200 mb-6 text-center">
+                <p className="text-xs text-slate-500 mb-0.5">
+                  De <s className="text-slate-400">{completePlan.originalPrice}</s> por apenas:
+                </p>
+                <div className="text-4xl sm:text-5xl font-black text-blue-700 leading-none my-1 tracking-tight">
+                  {completePlan.currentPrice}
+                </div>
+                <span className="inline-block text-xs font-bold text-slate-600 mt-1">
+                  {completePlan.installments} • pagamento único
+                </span>
+              </div>
+
+              {/* Features & Bonus List */}
+              <div className="mb-6">
+                <p className="text-[11px] font-black uppercase tracking-wider text-blue-700 mb-3 flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 fill-blue-700" />
+                  <span>Tudo o que você recebe no Plano Completo:</span>
+                </p>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-700">
+                  {completePlan.features.map((feature, idx) => (
+                    <li
+                      key={idx}
+                      className={`flex items-start gap-2.5 p-1.5 rounded-lg transition-colors ${
+                        feature.isBonus
+                          ? 'bg-amber-50/90 border border-amber-200/80 text-amber-950 font-bold'
+                          : feature.isHighlight
+                          ? 'bg-blue-50/60 font-bold text-blue-950'
+                          : ''
+                      }`}
+                    >
+                      {feature.isBonus ? (
+                        <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                          <Gift className="w-3 h-3" />
+                        </span>
+                      ) : (
+                        <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </span>
+                      )}
+                      <span className="leading-snug">{feature.text}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+            </div>
 
-              {/* Price & CTA */}
-              <div className="pt-4 border-t border-[#e4ede8] text-center">
-                <p className="text-sm text-[#4b5d54] mb-1">
-                  de <s className="text-slate-400">{COMPLETE_PLAN.originalPrice}</s> por:
-                </p>
-                <div className="text-4xl sm:text-[44px] font-black text-[#15803d] leading-none my-1 tracking-tight">
-                  {COMPLETE_PLAN.price}
-                </div>
-                <div className="my-2">
-                  <span className="inline-block bg-[#dcfce7] text-[#15803d] font-extrabold text-xs sm:text-sm px-3.5 py-1 rounded-full">
-                    {COMPLETE_PLAN.saveBadge}
-                  </span>
-                </div>
+            {/* CTA & Trust */}
+            <div className="pt-4 mt-auto border-t border-slate-100">
+              <button
+                type="button"
+                onClick={() => handlePlanCheckout(completePlan)}
+                className="w-full bg-[#dc2626] hover:bg-[#b91c1c] active:scale-[0.99] text-white font-black text-sm sm:text-base uppercase tracking-wider py-4 sm:py-4.5 px-6 rounded-2xl shadow-[0_12px_28px_rgba(220,38,38,0.38)] hover:shadow-[0_16px_34px_rgba(220,38,38,0.48)] transition-all cursor-pointer transform hover:-translate-y-0.5 flex items-center justify-center gap-2 animate-pulse-cta"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>{completePlan.cta}</span>
+              </button>
 
-                <button
-                  type="button"
-                  onClick={handleCompleteCheckout}
-                  className="w-full mt-4 bg-[#16a34a] hover:bg-[#15803d] active:scale-[0.99] text-white font-black text-xs sm:text-sm uppercase tracking-wider py-4 px-4 rounded-full shadow-lg hover:shadow-xl transition-all cursor-pointer"
-                >
-                  {COMPLETE_PLAN.cta}
-                </button>
+              <div className="flex items-center justify-center gap-3 mt-3 text-[11px] font-bold text-slate-500">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                  Pagamento 100% Seguro
+                </span>
+                <span>•</span>
+                <span className="flex items-center gap-1">
+                  <Zap className="w-3.5 h-3.5 text-blue-600" />
+                  Entrega Imediata
+                </span>
+                <span>•</span>
+                <span className="text-slate-500">Garantia 7 Dias</span>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Upgrade Modal */}
-      <UpgradeModal
-        isOpen={isUpgradeModalOpen}
-        onClose={() => setIsUpgradeModalOpen(false)}
-      />
-    </>
+        {/* Informação adicional de segurança e suporte */}
+        <div className="mt-12 text-center text-xs text-slate-400 max-w-xl mx-auto">
+          <p>
+            🔒 Pagamento processado com criptografia de ponta a ponta. Você recebe o acesso imediatamente após a aprovação no seu e-mail cadastrado.
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };

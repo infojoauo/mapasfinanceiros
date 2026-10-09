@@ -1,74 +1,71 @@
 import React from 'react';
-import { ShoppingCart, Mail, Download, Printer } from 'lucide-react';
+import { MousePointerClick, Users2, Mic, ArrowRight } from 'lucide-react';
 
-interface HowItWorksSectionProps {
-  onScrollToPricing: () => void;
-}
-
-export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onScrollToPricing }) => {
+export const HowItWorksSection: React.FC = () => {
   const steps = [
     {
-      number: '1',
-      title: 'Conclua sua compra',
-      desc: 'Após o pagamento, seu acesso é liberado automaticamente.',
-      icon: <ShoppingCart className="w-7 h-7 text-[#15803d]" />,
+      number: '01',
+      icon: MousePointerClick,
+      title: 'Escolha a atividade da aula',
+      desc: 'Navegue pelo kit e selecione o tópico ou tipo de atividade que melhor se encaixa no objetivo e no nível da sua turma naquele dia.',
     },
     {
-      number: '2',
-      title: 'Receba os dados de acesso',
-      desc: 'Você recebe o material no seu e-mail ou área de membros.',
-      icon: <Mail className="w-7 h-7 text-[#15803d]" />,
+      number: '02',
+      icon: Users2,
+      title: 'Organize as duplas ou grupos',
+      desc: 'Imprima os cartões ou projete na tela. Divida os alunos em duplas (pair work) ou pequenos grupos com instruções claras e rápidas.',
     },
     {
-      number: '3',
-      title: 'Baixe os arquivos',
-      desc: 'Todos os materiais ficam organizados para facilitar o uso.',
-      icon: <Download className="w-7 h-7 text-[#15803d]" />,
-    },
-    {
-      number: '4',
-      title: 'Imprima e aplique',
-      desc: 'Imprima as páginas e leve as atividades para seus alunos.',
-      icon: <Printer className="w-7 h-7 text-[#15803d]" />,
+      number: '03',
+      icon: Mic,
+      title: 'Conduza a prática com facilidade',
+      desc: 'Os alunos assumem a fala de maneira espontânea guiados pelas perguntas e prompts, enquanto você atua como facilitador e mediador.',
     },
   ];
 
   return (
-    <section className="py-14 sm:py-16 px-4 sm:px-6 bg-white text-center border-t border-[#e4ede8]">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white border-t border-slate-200/80">
       <div className="max-w-[1080px] mx-auto">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#0f2417] tracking-tight mb-8 sm:mb-10">
-          Como é o acesso
-        </h2>
-
-        {/* 4 Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10 max-w-[900px] mx-auto text-center">
-          {steps.map((step, idx) => (
-            <div key={idx} className="flex flex-col items-center justify-start text-center">
-              <div className="w-14 h-14 rounded-2xl bg-[#dcfce7] flex items-center justify-center mb-3 text-[#15803d] shadow-2xs">
-                {step.icon}
-              </div>
-              <div className="w-9 h-9 rounded-full bg-[#16a34a] text-white font-black flex items-center justify-center mb-3 text-sm shadow-xs">
-                {step.number}
-              </div>
-              <h3 className="text-base font-black text-[#0f2417] mb-1 leading-snug">
-                {step.title}
-              </h3>
-              <p className="text-sm text-[#4b5d54] leading-relaxed font-normal">
-                {step.desc}
-              </p>
-            </div>
-          ))}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-3">
+            Passo a Passo
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+            Como funciona na sua rotina de aula
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 font-medium">
+            Em apenas 3 passos simples, você transforma momentos de silêncio constrangedor em conversas ricas e ativas.
+          </p>
         </div>
 
-        {/* CTA Button */}
-        <div className="max-w-[520px] mx-auto">
-          <button
-            type="button"
-            onClick={onScrollToPricing}
-            className="w-full bg-[#16a34a] hover:bg-[#15803d] active:scale-[0.99] text-white font-black text-base sm:text-[19px] uppercase tracking-wider py-4 sm:py-4.5 px-8 rounded-full shadow-[0_8px_20px_rgba(22,163,74,0.35)] hover:-translate-y-0.5 transition-all cursor-pointer block text-center"
-          >
-            QUERO MEU ACESSO AGORA
-          </button>
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto relative">
+          {steps.map((step, idx) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-slate-50/70 rounded-2xl p-6 sm:p-7 border border-slate-200 relative flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-3xl font-black text-blue-200 tracking-tighter">
+                      {step.number}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-xs">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

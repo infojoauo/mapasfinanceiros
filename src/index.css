@@ -1,62 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 @layer base {
-  :root {
-    --green: #16a34a;
-    --green-dark: #15803d;
-    --green-soft: #dcfce7;
-    --teal: #0d9488;
-    --teal-dark: #0f766e;
-    --ink: #0f2417;
-    --muted: #4b5d54;
-    --line: #e4ede8;
-    --bg: #ffffff;
-    --bg-soft: #f3faf6;
-    --amber: #f59e0b;
-    --radius: 16px;
-    --wrap: 1080px;
-    --shadow: 0 8px 28px rgba(15, 118, 110, 0.10);
-    --cream: #faf9f1;
-    --navy: #13315c;
-    --navy-soft: #2f5490;
-    --pill: #7ff08d;
-    --pill-ink: #0b3d1a;
-  }
-
   *, ::before, ::after {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
   body {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.55;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #0f172a;
+    background: #ffffff;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.2;
-    font-weight: 900;
-  }
-
-  button, input, select, textarea {
-    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  }
-
-  body.modal-open {
-    overflow: hidden;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.15;
   }
 }
 

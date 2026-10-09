@@ -1,242 +1,148 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { TESTIMONIALS } from '../../data/salesPageConfig';
-import { ChevronLeft, ChevronRight, X, MessageSquareQuote } from 'lucide-react';
+import React from 'react';
+import {
+  TESTIMONIALS,
+  TESTIMONIALS_GALLERY_IMAGE,
+  PRODUCT_NAME,
+} from '../../data/salesPageConfig';
+import { ImageSlot } from '../common/ImageSlot';
+import { Star, MessageCircle, Quote, CheckCircle2, ArrowDown } from 'lucide-react';
 
-export const TestimonialsSection: React.FC = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+interface TestimonialsSectionProps {
+  onScrollToPricing: () => void;
+}
 
-  // Update scroll navigation buttons state & active indicator
-  const checkScroll = () => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-
-    const { scrollLeft, scrollWidth, clientWidth } = el;
-    setCanScrollLeft(scrollLeft > 10);
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-
-    // Calculate approximate active item index
-    const totalItems = TESTIMONIALS.length;
-    const scrollProgress = scrollLeft / (scrollWidth - clientWidth || 1);
-    const index = Math.round(scrollProgress * (totalItems - 1));
-    setActiveIndex(Math.min(Math.max(index, 0), totalItems - 1));
-  };
-
-  useEffect(() => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-
-    checkScroll();
-    el.addEventListener('scroll', checkScroll, { passive: true });
-    window.addEventListener('resize', checkScroll);
-
-    return () => {
-      el.removeEventListener('scroll', checkScroll);
-      window.removeEventListener('resize', checkScroll);
-    };
-  }, []);
-
-  const scroll = (direction: 'left' | 'right') => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-
-    // Scroll by roughly the width of one card + gap
-    const scrollAmount = el.clientWidth * 0.85;
-    el.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    });
-  };
-
-  const scrollToIndex = (index: number) => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-
-    const items = el.querySelectorAll<HTMLElement>('.testimonial-card');
-    if (items[index]) {
-      items[index].scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start',
-      });
-    }
-  };
-
+export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
+  onScrollToPricing,
+}) => {
   return (
-    <section className="py-14 sm:py-18 px-4 sm:px-6 bg-[#f3faf6] border-t border-[#e4ede8] relative">
-      <div className="max-w-[1080px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8 sm:mb-10 max-w-2xl mx-auto">
-          {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#dcfce7] text-[#15803d] text-xs font-black tracking-wider uppercase mb-3">
-            <MessageSquareQuote className="w-3.5 h-3.5" />
-            <span>Depoimentos Reais</span>
+    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-slate-50 border-t border-slate-200/80 relative">
+      <div className="max-w-[1140px] mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3.5 py-1 rounded-full uppercase tracking-wider mb-3 shadow-2xs">
+            <MessageCircle className="w-3.5 h-3.5" />
+            <span>Depoimentos Reais de Professores</span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#0f2417] tracking-tight mb-3">
-            Veja o que as professoras estão falando sobre as atividades
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">
+            Quem já aplicou em sala de aula recomenda
           </h2>
 
-          <p className="text-sm sm:text-base text-[#4b5d54] font-medium max-w-xl mx-auto">
-            Mensagens reais de educadoras que aplicaram o material em sala e transformaram a rotina de aulas de Ciências.
+          <p className="text-sm sm:text-base text-slate-600 font-medium">
+            Veja como professores de inglês de todo o Brasil estão economizando tempo de preparação e destravaram a conversação dos seus alunos.
+          </p>
+
+          {/* Social Proof Strip */}
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mt-6 pt-6 border-t border-slate-200 text-xs sm:text-sm font-bold text-slate-700">
+            <div className="flex items-center gap-1.5">
+              <div className="flex text-amber-400">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-400" />
+                ))}
+              </div>
+              <span className="text-slate-900 font-black">4.9 / 5.0</span>
+              <span className="text-slate-500 font-normal">(Avaliação média)</span>
+            </div>
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <div className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <span>+2.300 professores satisfeitos</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto mb-12">
+          {TESTIMONIALS.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between relative"
+            >
+              <div>
+                {/* Header do Card com Estrelas e Badge */}
+                <div className="flex items-center justify-between gap-2 mb-4">
+                  <div className="flex text-amber-400">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider bg-blue-50 text-blue-700 px-2.5 py-1 rounded-full border border-blue-100">
+                    {item.badge}
+                  </span>
+                </div>
+
+                {/* Destaque / Frase de Impacto */}
+                <div className="mb-3">
+                  <span className="inline-block text-xs sm:text-[13px] font-black text-slate-900 bg-slate-100/80 px-2.5 py-1 rounded-md">
+                    "{item.highlight}"
+                  </span>
+                </div>
+
+                {/* Texto do Depoimento */}
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-6 relative">
+                  <Quote className="w-6 h-6 text-slate-200 absolute -top-2 -left-2 -z-0 opacity-60" />
+                  <span className="relative z-10">{item.comment}</span>
+                </p>
+              </div>
+
+              {/* Autor */}
+              <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                {item.avatarUrl && item.avatarUrl.trim().length > 0 ? (
+                  <img
+                    src={item.avatarUrl}
+                    alt={item.name}
+                    className="w-11 h-11 rounded-full object-cover border border-slate-200"
+                  />
+                ) : (
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-blue-600 to-indigo-700 text-white font-black text-sm flex items-center justify-center shrink-0 shadow-xs">
+                    {item.name
+                      .split(' ')
+                      .map((n) => n[0])
+                      .slice(0, 2)
+                      .join('')}
+                  </div>
+                )}
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 leading-tight">
+                    {item.name}
+                  </h4>
+                  <p className="text-[11px] text-slate-500 font-medium">
+                    {item.role} • <span className="text-slate-400">{item.city}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Galeria Opcional de Prints / Mensagens (Vazia conforme solicitado, pronta para o usuário) */}
+        {Boolean(TESTIMONIALS_GALLERY_IMAGE) && (
+          <div className="max-w-3xl mx-auto mb-12">
+            <ImageSlot
+              src={TESTIMONIALS_GALLERY_IMAGE}
+              alt="Prints de Depoimentos de Professores"
+              label="MOCKUP DE PRINTS DO WHATSAPP / FEEDBACKS"
+              aspect="aspect-[16/9]"
+              className="bg-white border border-slate-200 rounded-2xl shadow-sm"
+            />
+          </div>
+        )}
+
+        {/* CTA direcionando para a escolha das ofertas logo abaixo */}
+        <div className="text-center pt-2">
+          <button
+            type="button"
+            onClick={onScrollToPricing}
+            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-black text-xs sm:text-sm uppercase tracking-wider py-3.5 px-6 rounded-full shadow-md hover:shadow-lg transition-all cursor-pointer transform hover:-translate-y-0.5"
+          >
+            <span>QUERO GARANTIR O MEU ACESSO AGORA</span>
+            <ArrowDown className="w-4 h-4 animate-bounce" />
+          </button>
+          <p className="text-[11px] text-slate-500 mt-2 font-medium">
+            Escolha abaixo entre a oferta de R$ 10 ou o pacote completo por R$ 26,90
           </p>
         </div>
-
-        {/* Carousel Container */}
-        <div className="relative">
-          {/* Desktop / Tablet Left Arrow Button */}
-          <button
-            type="button"
-            aria-label="Depoimento anterior"
-            onClick={() => scroll('left')}
-            disabled={!canScrollLeft}
-            className={`hidden sm:flex absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 items-center justify-center rounded-full bg-white border border-[#e4ede8] shadow-lg text-[#0f2417] transition-all cursor-pointer ${
-              canScrollLeft
-                ? 'hover:bg-[#16a34a] hover:text-white hover:border-[#16a34a] hover:scale-105 active:scale-95'
-                : 'opacity-30 cursor-not-allowed'
-            }`}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          {/* Desktop / Tablet Right Arrow Button */}
-          <button
-            type="button"
-            aria-label="Próximo depoimento"
-            onClick={() => scroll('right')}
-            disabled={!canScrollRight}
-            className={`hidden sm:flex absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 items-center justify-center rounded-full bg-white border border-[#e4ede8] shadow-lg text-[#0f2417] transition-all cursor-pointer ${
-              canScrollRight
-                ? 'hover:bg-[#16a34a] hover:text-white hover:border-[#16a34a] hover:scale-105 active:scale-95'
-                : 'opacity-30 cursor-not-allowed'
-            }`}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Scrollable Track (Snap carousel, smooth, swipeable) */}
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth py-2 px-1 no-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0 items-center"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {TESTIMONIALS.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="testimonial-card snap-start shrink-0 w-[260px] sm:w-[300px] md:w-[325px] transition-transform duration-300 hover:scale-102 cursor-pointer select-none"
-                onClick={() => setSelectedImage(testimonial.imageUrl)}
-              >
-                <img
-                  src={testimonial.imageUrl}
-                  alt={testimonial.alt}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="w-full h-auto object-contain block drop-shadow-md rounded-2xl"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Navigation Controls on Mobile */}
-          <div className="flex sm:hidden items-center justify-between mt-5 px-2">
-            <button
-              type="button"
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-              className={`p-2.5 rounded-full bg-white border border-[#e4ede8] text-[#0f2417] shadow-sm ${
-                canScrollLeft ? 'active:bg-[#16a34a] active:text-white' : 'opacity-30'
-              }`}
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex gap-1.5 items-center">
-              {TESTIMONIALS.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  aria-label={`Ir para depoimento ${i + 1}`}
-                  onClick={() => scrollToIndex(i)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    activeIndex === i ? 'w-6 bg-[#16a34a]' : 'w-2 bg-[#cbd5e1]'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-              className={`p-2.5 rounded-full bg-white border border-[#e4ede8] text-[#0f2417] shadow-sm ${
-                canScrollRight ? 'active:bg-[#16a34a] active:text-white' : 'opacity-30'
-              }`}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Desktop Dots Indicator */}
-          <div className="hidden sm:flex justify-center items-center gap-2 mt-6">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`Ir para depoimento ${i + 1}`}
-                onClick={() => scrollToIndex(i)}
-                className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeIndex === i ? 'w-8 bg-[#16a34a]' : 'w-2.5 bg-[#cbd5e1] hover:bg-[#94a3b8]'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
       </div>
-
-      {/* Modal Zoom Viewer */}
-      {selectedImage && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setSelectedImage(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-w-lg w-full max-h-[92vh] bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col"
-          >
-            {/* Header with Close Button */}
-            <div className="flex items-center justify-between p-3.5 border-b border-[#e4ede8] bg-[#f8faf8]">
-              <span className="text-xs sm:text-sm font-extrabold text-[#0f2417]">
-                Depoimento de Professora
-              </span>
-              <button
-                type="button"
-                onClick={() => setSelectedImage(null)}
-                className="p-1 rounded-full text-slate-500 hover:text-black hover:bg-slate-200 transition-colors cursor-pointer"
-                aria-label="Fechar"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Image display */}
-            <div className="overflow-y-auto p-2 bg-slate-50 flex items-center justify-center">
-              <img
-                src={selectedImage}
-                alt="Depoimento em tela cheia"
-                className="max-h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-xs"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
-

@@ -1,95 +1,83 @@
 import React from 'react';
+import { Clock, MessageSquare, Compass, Smile, ArrowDown } from 'lucide-react';
 
 interface BenefitsSectionProps {
   onScrollToPricing: () => void;
 }
 
 export const BenefitsSection: React.FC<BenefitsSectionProps> = ({ onScrollToPricing }) => {
-  const cards = [
+  const benefits = [
     {
-      title: 'Atividades prontas para imprimir',
-      desc: 'Você não precisa criar nada do zero. Basta baixar, imprimir e aplicar.',
-      iconUrl: '/assets/icons/laser.png',
-      fallbackUrl: 'https://atividadesprontas.online/wp-content/uploads/2026/05/laser.png',
-      alt: 'Ícone Atividades prontas para imprimir',
+      icon: Clock,
+      title: 'Economize horas de preparação',
+      desc: 'Diga adeus ao tempo gasto procurando perguntas aleatórias no Google. Tudo pronto, organizado e diagramado com qualidade visual.',
     },
     {
-      title: 'Conteúdos do 6º ao 9º ano',
-      desc: 'Atividades organizadas por ano escolar, com temas essenciais dos Anos Finais.',
-      iconUrl: '/assets/icons/scale.png',
-      fallbackUrl: 'https://atividadesprontas.online/wp-content/uploads/2026/05/scale.png',
-      alt: 'Ícone Conteúdos do 6º ao 9º ano',
+      icon: MessageSquare,
+      title: 'Estímulo genuíno à conversação',
+      desc: 'Tópicos atuais e instigantes que geram conexão imediata com os alunos, fazendo-os esquecer a timidez e participar com naturalidade.',
     },
     {
-      title: 'Visual didático e atrativo',
-      desc: 'Páginas com ilustrações, esquemas, tabelas, gráficos, experimentos e questões variadas.',
-      iconUrl: '/assets/icons/manual-book.png',
-      fallbackUrl: 'https://atividadesprontas.online/wp-content/uploads/2026/05/manual-book.png',
-      alt: 'Ícone Visual didático e atrativo',
+      icon: Compass,
+      title: 'Variedade pedagógica nas aulas',
+      desc: 'Chega de aulas monótonas centradas apenas em gramática teórica. Traga dinâmicas interativas que tornam o aprendizado dinâmico.',
     },
     {
-      title: 'Cabeçalho completo',
-      desc: 'Todas as páginas possuem espaço para escola, aluno, turma, série, data e professor.',
-      iconUrl: '/assets/icons/folders-1.png',
-      fallbackUrl: 'https://atividadesprontas.online/wp-content/uploads/2026/05/folders-1.png',
-      alt: 'Ícone Cabeçalho completo',
+      icon: Smile,
+      title: 'Mais tranquilidade para você lecionar',
+      desc: 'Vá para a aula sabendo que você tem na manga um recurso testado e pronto para render discussões produtivas e engajadas.',
     },
   ];
 
   return (
-    <section className="py-12 sm:py-16 px-4 sm:px-6 bg-white text-center border-t border-[#e4ede8]">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 bg-white border-t border-slate-200/80">
       <div className="max-w-[1080px] mx-auto">
-        {/* Title identical to reference image */}
-        <h2 className="text-[24px] sm:text-[30px] md:text-[34px] font-[900] text-[#0f2417] tracking-tight mb-7 sm:mb-8">
-          As 120 Atividades Visuais de Ciências possuem:
-        </h2>
-
-        {/* 2x2 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-[18px] max-w-[900px] mx-auto mb-7 sm:mb-8 text-center">
-          {cards.map((card, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-[16px] p-6 sm:p-7 border border-[#e4ede8] shadow-[0_8px_28px_rgba(15,118,110,0.10)] flex flex-col items-center justify-center text-center transition-transform hover:-translate-y-0.5 duration-200"
-            >
-              {/* Mint/Green Icon Container */}
-              <div className="w-[46px] h-[46px] rounded-[12px] bg-[#dcfce7] flex items-center justify-center mb-3 mx-auto shrink-0">
-                <img
-                  src={card.iconUrl}
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (target.src !== card.fallbackUrl) {
-                      target.src = card.fallbackUrl;
-                    }
-                  }}
-                  alt={card.alt}
-                  className="w-7 h-7 object-contain"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-              </div>
-
-              {/* Card Title */}
-              <h3 className="text-[17px] sm:text-[18px] font-[900] text-[#0f2417] mb-1.5 leading-snug">
-                {card.title}
-              </h3>
-
-              {/* Card Description */}
-              <p className="text-[14px] sm:text-[15px] text-[#4b5d54] leading-[1.5] font-[600] max-w-[360px]">
-                {card.desc}
-              </p>
-            </div>
-          ))}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <span className="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-200 px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-3">
+            Vantagens Práticas
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4">
+            Por que esse kit faz a diferença no seu dia a dia
+          </h2>
+          <p className="text-sm sm:text-base text-slate-600 font-medium">
+            Benefícios pensados para aliviar a rotina do professor e acelerar a desenvoltura dos estudantes.
+          </p>
         </div>
 
-        {/* CTA Button matching image.png */}
-        <div className="max-w-[520px] mx-auto">
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          {benefits.map((benefit, idx) => {
+            const Icon = benefit.icon;
+            return (
+              <div
+                key={idx}
+                className="bg-slate-50/70 rounded-2xl p-6 sm:p-7 border border-slate-200 hover:border-blue-200 hover:shadow-md transition-all flex items-start gap-4"
+              >
+                <div className="w-12 h-12 rounded-xl bg-blue-100/80 text-blue-700 flex items-center justify-center shrink-0">
+                  <Icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1.5">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
+                    {benefit.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Call to action button */}
+        <div className="text-center">
           <button
             type="button"
             onClick={onScrollToPricing}
-            className="w-full bg-[#16a34a] hover:bg-[#15803d] active:scale-[0.99] text-white font-[900] text-[16px] sm:text-[18px] uppercase tracking-wide py-4 sm:py-[17px] px-8 rounded-full shadow-[0_8px_20px_rgba(22,163,74,0.35)] hover:-translate-y-0.5 transition-all cursor-pointer block text-center"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white font-bold text-sm sm:text-base py-3.5 px-7 rounded-full shadow-md transition-all cursor-pointer"
           >
-            QUERO AS ATIVIDADES DE CIÊNCIAS
+            <span>Ver oferta e garantir acesso</span>
+            <ArrowDown className="w-4 h-4" />
           </button>
         </div>
       </div>
